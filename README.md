@@ -9,13 +9,16 @@ Bienvenido a mi portafolio personal. Aquí muestro mi trayectoria en ciberseguri
 - Jekyll (opcional)
 
 ## 📂 Estructura
+
+```text
 kr3s4l4.github.io/
 ├── index.html
 ├── assets/
-│ ├── css/
-│ └── images/
+│   ├── css/
+│   │   └── style.css
+│   └── images/
 └── README.md
-## 📫 Contacto
 
+## 📫 Contacto
 - GitHub: [@kr3s4l4](https://github.com/kr3s4l4)
 - LinkedIn: [kr3s4l4](https://linkedin.com/in/iñigo-g-454a08291)
