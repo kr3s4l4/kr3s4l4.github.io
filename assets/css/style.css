@@ -13,6 +13,7 @@
 
 html {
     scroll-behavior: smooth;
+    font-size: 16px;
 }
 
 body {
@@ -22,6 +23,7 @@ body {
     line-height: 1.7;
     min-height: 100vh;
     position: relative;
+    font-size: clamp(16px, 1.2vw + 10px, 22px);
 }
 
 /* ===== FONDO CON TEXTURA SUTIL ===== */
@@ -105,8 +107,8 @@ body::before {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 280px;
-    height: 280px;
+    width: clamp(200px, 25vw, 320px);
+    height: clamp(200px, 25vw, 320px);
     border-radius: 50%;
     background: radial-gradient(circle, rgba(88, 166, 255, 0.06) 0%, transparent 70%);
     animation: pulse-ring 3s ease-in-out infinite;
@@ -142,8 +144,8 @@ body::before {
 }
 
 .hero-avatar {
-    width: 180px;
-    height: 180px;
+    width: clamp(120px, 15vw, 200px);
+    height: clamp(120px, 15vw, 200px);
     border-radius: 50%;
     object-fit: cover;
     border: 4px solid #0a0c0f;
@@ -160,7 +162,7 @@ body::before {
 /* Estado */
 .hero-status {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 0.6rem;
+    font-size: clamp(0.5rem, 0.7vw, 0.65rem);
     color: #3fb950;
     background: rgba(63, 185, 80, 0.06);
     padding: 4px 14px;
@@ -188,8 +190,8 @@ body::before {
 
 .hero-social a {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 0.55rem;
-    padding: 3px 12px;
+    font-size: clamp(0.5rem, 0.8vw, 0.7rem);
+    padding: 4px 14px;
     border-radius: 4px;
     border: 1px solid rgba(255,255,255,0.04);
     color: #6e7681;
@@ -207,7 +209,7 @@ body::before {
 /* ===== COLUMNA DERECHA ===== */
 .hero-right h1 {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 2.8rem;
+    font-size: clamp(2rem, 5vw, 4rem);
     font-weight: 700;
     margin-bottom: 2px;
     color: #f0f6fc;
@@ -223,7 +225,7 @@ body::before {
 
 .hero-right .subtitle {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 0.9rem;
+    font-size: clamp(0.8rem, 1.5vw, 1.3rem);
     color: #6e7681;
     margin-bottom: 12px;
 }
@@ -237,8 +239,8 @@ body::before {
 
 .hero-badge {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 0.55rem;
-    padding: 2px 12px;
+    font-size: clamp(0.5rem, 0.8vw, 0.75rem);
+    padding: 3px 14px;
     border-radius: 10px;
     border: 1px solid rgba(255,255,255,0.04);
     color: #6e7681;
@@ -252,7 +254,7 @@ body::before {
 }
 
 .hero-right .description {
-    font-size: 0.95rem;
+    font-size: clamp(0.9rem, 1.4vw, 1.2rem);
     color: #8b949e;
     max-width: 520px;
     line-height: 1.8;
@@ -275,10 +277,10 @@ body::before {
 .btn {
     font-family: 'JetBrains Mono', monospace;
     display: inline-block;
-    padding: 8px 22px;
+    padding: clamp(8px, 0.8vw + 6px, 14px) clamp(18px, 2vw + 10px, 32px);
     border-radius: 5px;
     font-weight: 600;
-    font-size: 0.75rem;
+    font-size: clamp(0.65rem, 0.9vw, 0.9rem);
     text-decoration: none;
     transition: all 0.3s ease;
     letter-spacing: 0.3px;
@@ -329,7 +331,7 @@ section::before {
 
 h2 {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 1.2rem;
+    font-size: clamp(1.2rem, 2.2vw, 2rem);
     color: #f0f6fc;
     margin-bottom: 18px;
     letter-spacing: -0.3px;
@@ -369,14 +371,14 @@ h2::before {
 .stat-number {
     font-family: 'JetBrains Mono', monospace;
     display: block;
-    font-size: 1.8rem;
+    font-size: clamp(1.5rem, 3vw, 2.8rem);
     font-weight: 700;
     color: #58a6ff;
     letter-spacing: -1px;
 }
 
 .stat-label {
-    font-size: 0.75rem;
+    font-size: clamp(0.65rem, 0.9vw, 0.9rem);
     color: #6e7681;
     font-weight: 300;
 }
@@ -390,7 +392,7 @@ h2::before {
 
 .about-text p {
     color: #8b949e;
-    font-size: 0.92rem;
+    font-size: clamp(0.85rem, 1.1vw, 1.05rem);
     margin-bottom: 8px;
     font-weight: 300;
 }
@@ -403,7 +405,7 @@ h2::before {
 .about-text ul li {
     color: #8b949e;
     padding: 2px 0;
-    font-size: 0.85rem;
+    font-size: clamp(0.8rem, 1vw, 0.95rem);
 }
 
 .about-text ul li::before {
@@ -421,8 +423,8 @@ h2::before {
 
 .tag {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 0.55rem;
-    padding: 3px 12px;
+    font-size: clamp(0.5rem, 0.8vw, 0.75rem);
+    padding: 4px 14px;
     border-radius: 10px;
     border: 1px solid rgba(255,255,255,0.04);
     color: #6e7681;
@@ -445,12 +447,12 @@ h2::before {
 .cert-card h4 {
     color: #f0f6fc;
     font-weight: 500;
-    font-size: 0.85rem;
+    font-size: clamp(0.75rem, 1vw, 0.95rem);
 }
 
 .cert-card p {
     color: #6e7681;
-    font-size: 0.75rem;
+    font-size: clamp(0.65rem, 0.8vw, 0.8rem);
     font-weight: 300;
 }
 
@@ -463,13 +465,13 @@ h2::before {
 
 .exp-card h4 {
     color: #f0f6fc;
-    font-size: 0.85rem;
+    font-size: clamp(0.75rem, 0.9vw, 0.9rem);
     font-weight: 500;
 }
 
 .exp-card p {
     color: #6e7681;
-    font-size: 0.7rem;
+    font-size: clamp(0.6rem, 0.7vw, 0.75rem);
     margin-bottom: 4px;
 }
 
@@ -480,7 +482,7 @@ h2::before {
 
 .exp-card ul li {
     color: #8b949e;
-    font-size: 0.75rem;
+    font-size: clamp(0.65rem, 0.75vw, 0.8rem);
     padding: 1px 0 1px 14px;
     position: relative;
 }
@@ -500,7 +502,7 @@ h2::before {
 
 .writeup-category h3 {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 0.9rem;
+    font-size: clamp(0.8rem, 1.2vw, 1.1rem);
     color: #f0f6fc;
     margin-bottom: 8px;
 }
@@ -513,18 +515,18 @@ h2::before {
 
 .writeup-card h4 {
     color: #f0f6fc;
-    font-size: 0.8rem;
+    font-size: clamp(0.7rem, 0.9vw, 0.85rem);
     margin: 4px 0 2px;
 }
 
 .writeup-card p {
     color: #6e7681;
-    font-size: 0.7rem;
+    font-size: clamp(0.6rem, 0.7vw, 0.75rem);
 }
 
 .difficulty {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 0.5rem;
+    font-size: clamp(0.45rem, 0.6vw, 0.6rem);
     padding: 1px 10px;
     border-radius: 8px;
     font-weight: 600;
@@ -536,7 +538,7 @@ h2::before {
 
 .btn-small {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 0.6rem;
+    font-size: clamp(0.5rem, 0.7vw, 0.65rem);
     padding: 3px 12px;
     background: rgba(35, 134, 54, 0.2);
     color: #3fb950;
@@ -559,7 +561,7 @@ h2::before {
 
 .skill-category h4 {
     color: #f0f6fc;
-    font-size: 0.8rem;
+    font-size: clamp(0.7rem, 0.9vw, 0.85rem);
     font-weight: 500;
 }
 
@@ -570,7 +572,7 @@ h2::before {
 
 .skill-category ul li {
     color: #6e7681;
-    font-size: 0.75rem;
+    font-size: clamp(0.65rem, 0.75vw, 0.8rem);
     padding: 1px 0;
 }
 
@@ -589,7 +591,7 @@ h2::before {
 
 .hobby-tag {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 0.6rem;
+    font-size: clamp(0.5rem, 0.8vw, 0.7rem);
     padding: 3px 14px;
     border-radius: 12px;
     border: 1px solid rgba(255,255,255,0.04);
@@ -639,7 +641,7 @@ h2::before {
     padding: 6px 12px;
     cursor: pointer;
     border-radius: 50%;
-    font-size: 0.9rem;
+    font-size: clamp(0.8rem, 1vw, 1.1rem);
     transition: all 0.3s ease;
     z-index: 2;
 }
@@ -659,8 +661,8 @@ h2::before {
 
 .carousel-dots .dot {
     display: inline-block;
-    width: 6px;
-    height: 6px;
+    width: clamp(6px, 0.6vw, 8px);
+    height: clamp(6px, 0.6vw, 8px);
     margin: 0 3px;
     background: #1a1e24;
     border-radius: 50%;
@@ -687,8 +689,8 @@ h2::before {
 
 .social-icon {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 0.65rem;
-    padding: 6px 18px;
+    font-size: clamp(0.6rem, 0.9vw, 0.8rem);
+    padding: clamp(6px, 0.6vw + 4px, 10px) clamp(14px, 1.5vw + 8px, 24px);
     background: rgba(255,255,255,0.02);
     color: #c9d1d9;
     text-decoration: none;
@@ -706,7 +708,7 @@ h2::before {
 
 .contact-note {
     color: #6e7681;
-    font-size: 0.75rem;
+    font-size: clamp(0.65rem, 0.8vw, 0.8rem);
     font-weight: 300;
 }
 
@@ -717,7 +719,7 @@ footer {
     border-top: 1px solid rgba(255,255,255,0.03);
     margin-top: 12px;
     color: #6e7681;
-    font-size: 0.65rem;
+    font-size: clamp(0.6rem, 0.7vw, 0.8rem);
     font-weight: 300;
     letter-spacing: 0.5px;
 }
@@ -731,8 +733,8 @@ footer {
         padding: 40px 0 32px;
     }
     .hero-avatar {
-        width: 140px;
-        height: 140px;
+        width: clamp(100px, 25vw, 160px);
+        height: clamp(100px, 25vw, 160px);
     }
     .hero-left {
         order: -1;
@@ -756,20 +758,34 @@ footer {
         right: auto;
         left: 0;
     }
+    .hero-left::before {
+        width: clamp(160px, 35vw, 240px);
+        height: clamp(160px, 35vw, 240px);
+    }
 }
 
 @media (max-width: 480px) {
     .hero-right h1 {
-        font-size: 1.8rem;
+        font-size: clamp(1.5rem, 6vw, 2.2rem);
     }
     .hero-avatar {
-        width: 100px;
-        height: 100px;
+        width: clamp(80px, 20vw, 120px);
+        height: clamp(80px, 20vw, 120px);
     }
     .writeup-grid {
         grid-template-columns: 1fr;
     }
     .skills-grid {
         grid-template-columns: 1fr;
+    }
+    .cert-grid {
+        grid-template-columns: 1fr;
+    }
+    .exp-grid {
+        grid-template-columns: 1fr;
+    }
+    .hero-left::before {
+        width: clamp(140px, 40vw, 180px);
+        height: clamp(140px, 40vw, 180px);
     }
 }
