@@ -300,6 +300,57 @@
             </div>
         </section>
 
+        <!-- Galería de Fotos -->
+        <section class="gallery">
+            <h2>📸 Fotografía</h2>
+            <p>Una muestra de mi pasión por la fotografía.</p>
+            <div class="carousel">
+                <div class="carousel-container">
+                    <div class="carousel-slide">
+                        <img src="assets/images/foto1.jpg" alt="Foto 1">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="assets/images/foto12.jpg" alt="Foto 2">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="assets/images/foto3.jpg" alt="Foto 3">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="assets/images/foto24.jpg" alt="Foto 1">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="assets/images/foto35.jpg" alt="Foto 2">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="assets/images/foto2.jpg" alt="Foto 3">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="assets/images/foto17.jpg" alt="Foto 1">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="assets/images/foto28.jpg" alt="Foto 2">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="assets/images/foto3.jpg" alt="Foto 3">
+                    </div>
+
+                </div>
+                <button class="carousel-btn prev" onclick="moveSlide(-1)">&#10094;</button>
+                <button class="carousel-btn next" onclick="moveSlide(1)">&#10095;</button>
+            </div>
+            <div class="carousel-dots">
+                <span class="dot" onclick="currentSlide(0)"></span>
+                <span class="dot" onclick="currentSlide(1)"></span>
+                <span class="dot" onclick="currentSlide(2)"></span>
+                <span class="dot" onclick="currentSlide(3)"></span>
+                <span class="dot" onclick="currentSlide(4)"></span>
+                <span class="dot" onclick="currentSlide(5)"></span>
+                <span class="dot" onclick="currentSlide(6)"></span>
+                <span class="dot" onclick="currentSlide(7)"></span>
+                <span class="dot" onclick="currentSlide(8)"></span>
+            </div>
+        </section>
+
         <!-- Contacto -->
         <section class="contact">
             <h2>📫 Conéctate Conmigo</h2>
@@ -320,5 +371,45 @@
             <p>© 2026 kr3s4l4. Hecho con ❤️ y ☕</p>
         </footer>
     </div>
+
+    <script>
+        let slideIndex = 0;
+        const slides = document.querySelectorAll('.carousel-slide');
+        const dots = document.querySelectorAll('.dot');
+
+        function showSlide(index) {
+            if (index >= slides.length) slideIndex = 0;
+            if (index < 0) slideIndex = slides.length - 1;
+
+            const container = document.querySelector('.carousel-container');
+            container.style.transform = 'translateX(-' + (slideIndex * 100) + '%)';
+
+            dots.forEach(function(dot, i) {
+                if (i === slideIndex) {
+                    dot.classList.add('active');
+                } else {
+                    dot.classList.remove('active');
+                }
+            });
+        }
+
+        function moveSlide(direction) {
+            slideIndex += direction;
+            showSlide(slideIndex);
+        }
+
+        function currentSlide(index) {
+            slideIndex = index;
+            showSlide(slideIndex);
+        }
+
+        // Auto-play (opcional)
+        setInterval(function() {
+            moveSlide(1);
+        }, 5000);
+
+        // Inicializar
+        showSlide(0);
+    </script>
 </body>
 </html>
