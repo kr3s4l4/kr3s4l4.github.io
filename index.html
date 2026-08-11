@@ -16,9 +16,6 @@
     <meta name="twitter:title" content="kr3s4l4 - Ethical Hacking & CTF Writeups">
     <meta name="twitter:description" content="Writeups de picoCTF, Root-me y torneos CTF. Más de 117 retos resueltos.">
     
-    <!-- ============================================================ -->
-    <!-- SEGURIDAD -->
-    <!-- ============================================================ -->
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:;">
     <meta name="referrer" content="strict-origin-when-cross-origin">
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
@@ -29,9 +26,6 @@
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
-        /* ============================================================ */
-        /* ESTILOS EXISTENTES */
-        /* ============================================================ */
         @media (max-width: 768px) {
             .writeup-grid.rootme-grid {
                 grid-template-columns: repeat(2, 1fr) !important;
@@ -52,9 +46,6 @@
             animation: matrixGlow 3s infinite;
         }
         
-        /* ============================================================ */
-        /* TERMINAL HACKER (OCULTA POR DEFECTO) */
-        /* ============================================================ */
         .hacker-terminal {
             background: #0a0a0a;
             border: 1px solid #00ff41;
@@ -153,9 +144,6 @@
             opacity: 0.5;
         }
         
-        /* ============================================================ */
-        /* BOTÓN MODO HACKER */
-        /* ============================================================ */
         .hacker-btn {
             background: transparent;
             border: 1px solid #00ff41;
@@ -178,36 +166,8 @@
             border-color: #00ff41;
         }
         
-        .hacker-notification {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: #0a0a0a;
-            border: 2px solid #00ff41;
-            padding: 1rem 1.5rem;
-            border-radius: 8px;
-            color: #00ff41;
-            font-family: 'JetBrains Mono', monospace;
-            z-index: 9999;
-            box-shadow: 0 0 40px rgba(0, 255, 65, 0.2);
-            animation: slideIn 0.5s ease;
-            max-width: 300px;
-        }
-        .hacker-notification small {
-            opacity: 0.5;
-            font-size: 0.7rem;
-        }
-        @keyframes slideIn {
-            from { transform: translateX(100px); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
-        }
-        @keyframes fadeOut {
-            from { opacity: 1; }
-            to { opacity: 0; }
-        }
-        
         /* ============================================================ */
-        /* EFECTO TÚNEL DE DATOS / MATRIX OVERLAY */
+        /* EFECTO TÚNEL DE DATOS CON VÉRTIGO */
         /* ============================================================ */
         .matrix-overlay {
             position: fixed;
@@ -228,7 +188,38 @@
             display: flex;
         }
         
-        .data-tunnel {
+        .data-tunnel-3d {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            transform-style: preserve-3d;
+            animation: tunnelFall 4s ease-in-out infinite;
+        }
+        @keyframes tunnelFall {
+            0% { transform: rotateX(0deg) translateZ(0px); }
+            50% { transform: rotateX(5deg) translateZ(-200px); }
+            100% { transform: rotateX(0deg) translateZ(0px); }
+        }
+        
+        .tunnel-ring {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotateX(70deg);
+            border: 2px solid rgba(0, 255, 65, 0.3);
+            border-radius: 50%;
+            animation: ringPulse 2s ease-in-out infinite;
+            box-shadow: 0 0 30px rgba(0, 255, 65, 0.1);
+        }
+        @keyframes ringPulse {
+            0% { width: 200px; height: 200px; opacity: 0.8; }
+            50% { width: 600px; height: 600px; opacity: 0.2; }
+            100% { width: 200px; height: 200px; opacity: 0.8; }
+        }
+        
+        .data-rain {
             position: absolute;
             width: 100%;
             height: 100%;
@@ -236,20 +227,42 @@
             left: 0;
             overflow: hidden;
         }
-        .data-stream {
+        .data-drop {
             position: absolute;
-            font-size: 14px;
+            font-size: 16px;
             color: #00ff41;
             opacity: 0.8;
             white-space: nowrap;
-            animation: fall linear infinite;
+            animation: dataFall linear infinite;
             text-shadow: 0 0 10px rgba(0, 255, 65, 0.3);
+            font-family: 'JetBrains Mono', monospace;
         }
-        @keyframes fall {
-            0% { transform: translateY(-100vh); opacity: 0; }
-            10% { opacity: 1; }
-            90% { opacity: 1; }
-            100% { transform: translateY(100vh); opacity: 0; }
+        @keyframes dataFall {
+            0% { transform: translateY(-100vh) rotate(0deg) scale(1); opacity: 0; }
+            10% { opacity: 0.8; }
+            80% { opacity: 0.8; }
+            100% { transform: translateY(100vh) rotate(360deg) scale(0.5); opacity: 0; }
+        }
+        
+        .glitch-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                0deg,
+                transparent 0px,
+                transparent 3px,
+                rgba(0, 255, 65, 0.03) 3px,
+                rgba(0, 255, 65, 0.03) 4px
+            );
+            animation: glitchScan 0.1s infinite;
+            pointer-events: none;
+        }
+        @keyframes glitchScan {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(5px); }
         }
         
         .matrix-center-text {
@@ -264,8 +277,9 @@
             animation: pulseGlow 1s infinite alternate;
         }
         @keyframes pulseGlow {
-            0% { box-shadow: 0 0 30px rgba(0, 255, 65, 0.2); }
-            100% { box-shadow: 0 0 80px rgba(0, 255, 65, 0.6); }
+            0% { box-shadow: 0 0 30px rgba(0, 255, 65, 0.2); transform: scale(1); }
+            50% { transform: scale(1.02); }
+            100% { box-shadow: 0 0 80px rgba(0, 255, 65, 0.6); transform: scale(1); }
         }
         .matrix-center-text .line {
             font-size: 1.2rem;
@@ -282,8 +296,8 @@
             font-weight: bold;
         }
         @keyframes typeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+            from { opacity: 0; transform: translateY(10px) scale(0.9); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
         }
         
         .hacked-text {
@@ -294,12 +308,12 @@
             text-shadow: 0 0 30px #00ff41;
         }
         @keyframes blink {
-            0% { opacity: 0.3; }
-            100% { opacity: 1; }
+            0% { opacity: 0.3; text-shadow: 0 0 10px #00ff41; }
+            100% { opacity: 1; text-shadow: 0 0 60px #00ff41, 0 0 120px #00ff41; }
         }
         
         /* ============================================================ */
-        /* BINARIO OCULTO (SOLO CÓDIGO FUENTE) */
+        /*                     BINARIO OCULTO                           */
         /* ============================================================ */
         .binary-hidden {
             display: none;
@@ -309,9 +323,6 @@
 <body>
     <div class="container">
 
-        <!-- ============================================================ -->
-        <!-- HEADER / HERO -->
-        <!-- ============================================================ -->
         <header class="hero">
             <div class="hero-left">
                 <div class="hero-avatar-wrapper">
@@ -350,9 +361,6 @@
             </div>
         </header>
 
-        <!-- ============================================================ -->
-        <!-- ESTADÍSTICAS -->
-        <!-- ============================================================ -->
         <section class="stats">
             <div class="stat-card">
                 <span class="stat-number">117</span>
@@ -368,9 +376,6 @@
             </div>
         </section>
 
-        <!-- ============================================================ -->
-        <!-- SOBRE MÍ -->
-        <!-- ============================================================ -->
         <section class="about">
             <h2>Sobre Mí</h2>
             <div class="about-grid">
@@ -455,18 +460,18 @@
             </div>
             <div class="terminal-output" id="terminal-output">
                 <p class="terminal-line">> Terminal hackeada activada.</p>
-                <p class="terminal-line dim">> Para activar el protocolo Matrix, necesitas la contraseña.</p>
-                <p class="terminal-line dim">> Formato: <span style="color: #ffbd2e;">flag [contraseña]</span></p>
+                <p class="terminal-line dim">> Introduce el comando de acceso.</p>
+                <p class="terminal-line dim">> Formato: <span style="color: #ffbd2e;">flag [clave]</span></p>
                 <p class="terminal-line dim" style="font-size: 0.8rem;">> Pista: Revisa el código fuente (F12)</p>
             </div>
             <div class="terminal-input-line">
                 <span class="terminal-prompt">$</span>
-                <input type="text" class="terminal-input" id="terminal-input" placeholder="flag [contraseña]..." autocomplete="off" aria-label="Terminal hacker">
+                <input type="text" class="terminal-input" id="terminal-input" placeholder="flag [clave]..." autocomplete="off" aria-label="Terminal hacker">
             </div>
         </section>
 
         <!-- ============================================================ -->
-        <!-- EXPERIENCIA, CERTIFICACIONES, WRITEUPS, ETC... -->
+        <!-- RESTO DE SECCIONES (EXPERIENCIA, WRITEUPS, ETC) -->
         <!-- ============================================================ -->
         <section class="experience">
             <h2>Experiencia Profesional</h2>
@@ -712,29 +717,14 @@
         </section>
 
         <!-- ============================================================ -->
-        <!-- FOOTER CON EASTER EGG OCULTO -->
+        <!-- FOOTER CON EASTER EGG (SOLO BINARIO) -->
         <!-- ============================================================ -->
         <footer>
             <p>© 2026 kr3s4l4. Hecho con ❤️ y ☕</p>
             
-            <!-- ========================================================== -->
-            <!-- EASTER EGG: El binario está OCULTO (solo visible en F12) -->
-            <!-- ========================================================== -->
-            <div class="binary-hidden">
-                <!-- 
-                    🔐 RETO OCULTO:
-                    El siguiente binario esconde la contraseña para el modo Matrix:
-                    
-                    01010011 01101001 01100111 01110101 01100101 00100000 01100001 01101100 00100000 01100011 01101111 01101110 01100101 01101010 01101111 00100000 01100010 01101100 01100001 01101110 01100011 01101111
-                    
-                    Decodificado: "Sigue al conejo blanco"
-                    
-                    Instrucciones:
-                    1. Activa el Modo Hacker con el botón
-                    2. Escribe en la terminal: flag Sigue al conejo blanco
-                    3. ¡Disfruta del viaje!
-                -->
-            </div>
+            <!-- 
+                01010011 00110001 01100111 01110101 00110011 00100000 00110100 01101100 00100000 01100011 00110000 01101110 00110011 01101010 01101111 00100000 01000010 01101100 00110100 01101110 01100011 00110000
+            -->
             <p style="font-size: 0.6rem; opacity: 0.15; margin-top: 0.2rem; font-family: 'JetBrains Mono', monospace;">
                 <!-- Pista: Revisa el código fuente (F12) -->
             </p>
@@ -743,21 +733,36 @@
     </div>
 
     <!-- ============================================================ -->
-    <!-- MATRIX OVERLAY (EFECTO TÚNEL DE DATOS) -->
+    <!-- MATRIX OVERLAY - EFECTO DE CAÍDA / VÉRTIGO -->
     <!-- ============================================================ -->
     <div class="matrix-overlay" id="matrixOverlay">
-        <div class="data-tunnel" id="dataTunnel"></div>
+        <div class="data-tunnel-3d" id="dataTunnel3d">
+            <div class="tunnel-ring" style="animation-delay: 0s; width: 100px; height: 100px;"></div>
+            <div class="tunnel-ring" style="animation-delay: 0.3s; width: 200px; height: 200px;"></div>
+            <div class="tunnel-ring" style="animation-delay: 0.6s; width: 300px; height: 300px;"></div>
+            <div class="tunnel-ring" style="animation-delay: 0.9s; width: 400px; height: 400px;"></div>
+            <div class="tunnel-ring" style="animation-delay: 1.2s; width: 500px; height: 500px;"></div>
+            <div class="tunnel-ring" style="animation-delay: 1.5s; width: 600px; height: 600px;"></div>
+            <div class="tunnel-ring" style="animation-delay: 1.8s; width: 700px; height: 700px;"></div>
+            <div class="tunnel-ring" style="animation-delay: 2.1s; width: 800px; height: 800px;"></div>
+            <div class="tunnel-ring" style="animation-delay: 2.4s; width: 900px; height: 900px;"></div>
+            <div class="tunnel-ring" style="animation-delay: 2.7s; width: 1000px; height: 1000px;"></div>
+        </div>
+        
+        <div class="data-rain" id="dataRain"></div>
+        <div class="glitch-overlay"></div>
+        
         <div class="matrix-center-text" id="matrixCenterText">
-            <div class="line bright" style="animation-delay: 0.1s;">> SIGUE AL CONEJO BLANCO...</div>
-            <div class="line" style="animation-delay: 0.3s;">> Conectando a la Matrix...</div>
-            <div class="line" style="animation-delay: 0.6s;">> Cargando el código fuente...</div>
-            <div class="line dim" style="animation-delay: 0.9s;">> Estableciendo túnel de datos...</div>
-            <div class="line dim" style="animation-delay: 1.2s;">> Inyectando el programa de entrenamiento...</div>
-            <div class="line" style="animation-delay: 1.5s;">> Despertando al Neo interior...</div>
-            <div class="line bright" style="animation-delay: 1.8s; color: #ffbd2e;">> BIENVENIDO A LA MATRIX</div>
-            <div class="hacked-text" style="animation-delay: 2.2s;">> 🐇 EL CONEJO BLANCO TE HA GUIADO 🐇</div>
-            <div class="line dim" style="animation-delay: 2.6s; font-size: 0.7rem; opacity: 0.3;">
-                > ¿Sabes lo profundo que es el agujero del conejo?
+            <div class="line bright" style="animation-delay: 0.1s;">> INICIANDO PROTOCOLO DE ACCESO...</div>
+            <div class="line" style="animation-delay: 0.4s;">> Descifrando clave de acceso...</div>
+            <div class="line" style="animation-delay: 0.7s;">> Conectando al núcleo del sistema...</div>
+            <div class="line dim" style="animation-delay: 1.0s;">> Estableciendo túnel de datos...</div>
+            <div class="line dim" style="animation-delay: 1.3s;">> Cargando módulos de realidad...</div>
+            <div class="line" style="animation-delay: 1.6s;">> Inyectando protocolo de entrenamiento...</div>
+            <div class="line bright" style="animation-delay: 1.9s; color: #ffbd2e;">> ACCESO CONCEDIDO</div>
+            <div class="hacked-text" style="animation-delay: 2.3s;">> ⚡ BIENVENIDO AL AGUJERO DE DATOS ⚡</div>
+            <div class="line dim" style="animation-delay: 2.7s; font-size: 0.7rem; opacity: 0.3;">
+                > ¿Qué tan profundo quieres llegar?
             </div>
         </div>
     </div>
@@ -806,7 +811,7 @@
         showSlide(0);
 
         // ============================================================
-        // ACTIVAR MODO HACKER (MOSTRAR TERMINAL)
+        // ACTIVAR MODO HACKER
         // ============================================================
         function activateHackerMode() {
             const terminal = document.getElementById('hackerTerminal');
@@ -817,7 +822,6 @@
                 btn.textContent = '🔓 Modo Hacker Activado';
                 btn.classList.add('activated');
                 
-                // Enfocar el input
                 setTimeout(() => {
                     document.getElementById('terminal-input').focus();
                 }, 300);
@@ -825,16 +829,15 @@
         }
 
         // ============================================================
-        // TERMINAL - PROCESAR COMANDOS
+        // TERMINAL
         // ============================================================
         const terminalInput = document.getElementById('terminal-input');
         const terminalOutput = document.getElementById('terminal-output');
         let matrixActivated = false;
 
-        // La contraseña correcta (FRASE DE MATRIX)
-        const PASSWORD = 'Sigue al conejo blanco';
+        // CONTRASEÑA CORRECTA
+        const PASSWORD = 'S1gu3 4l c0n3jo Bl4nc0';
 
-        // Comandos válidos
         const validCommands = {
             'help': 'Comandos: help, whoami, ls, clear, exit',
             'whoami': 'kr3s4l4 - Ethical Hacker en formación',
@@ -845,46 +848,64 @@
         };
 
         // ============================================================
-        // EFECTO TÚNEL DE DATOS / MATRIX
+        // EFECTO MATRIX
         // ============================================================
         function triggerMatrixEffect() {
             if (matrixActivated) return;
             matrixActivated = true;
 
             const overlay = document.getElementById('matrixOverlay');
-            const tunnel = document.getElementById('dataTunnel');
+            const rain = document.getElementById('dataRain');
             
-            tunnel.innerHTML = '';
+            rain.innerHTML = '';
             const chars = '0123456789ABCDEF!@#$%^&*()_+-=<>?/:;[]{}\\|';
-            for (let i = 0; i < 40; i++) {
-                const stream = document.createElement('div');
-                stream.className = 'data-stream';
+            for (let i = 0; i < 60; i++) {
+                const drop = document.createElement('div');
+                drop.className = 'data-drop';
                 let text = '';
-                for (let j = 0; j < 30; j++) {
+                for (let j = 0; j < 20 + Math.random() * 30; j++) {
                     text += chars[Math.floor(Math.random() * chars.length)];
                 }
-                stream.textContent = text;
-                stream.style.left = (Math.random() * 100) + '%';
-                stream.style.fontSize = (10 + Math.random() * 20) + 'px';
-                stream.style.animationDuration = (3 + Math.random() * 5) + 's';
-                stream.style.animationDelay = (Math.random() * 3) + 's';
-                stream.style.opacity = 0.3 + Math.random() * 0.5;
-                tunnel.appendChild(stream);
+                drop.textContent = text;
+                drop.style.left = (Math.random() * 100) + '%';
+                drop.style.fontSize = (12 + Math.random() * 18) + 'px';
+                drop.style.animationDuration = (2 + Math.random() * 4) + 's';
+                drop.style.animationDelay = (Math.random() * 3) + 's';
+                drop.style.opacity = 0.3 + Math.random() * 0.6;
+                rain.appendChild(drop);
             }
 
             overlay.classList.add('active');
 
+            let glitchCount = 0;
+            const glitchInterval = setInterval(() => {
+                if (glitchCount > 8) {
+                    clearInterval(glitchInterval);
+                    return;
+                }
+                overlay.style.transform = 'translate(' + (Math.random() - 0.5) * 10 + 'px, ' + (Math.random() - 0.5) * 10 + 'px)';
+                overlay.style.filter = 'hue-rotate(' + (Math.random() * 10 - 5) + 'deg)';
+                setTimeout(() => {
+                    overlay.style.transform = 'translate(0, 0)';
+                    overlay.style.filter = 'hue-rotate(0deg)';
+                }, 100);
+                glitchCount++;
+            }, 300);
+
             setTimeout(() => {
                 overlay.classList.remove('active');
-                tunnel.innerHTML = '';
+                overlay.style.transform = 'translate(0, 0)';
+                overlay.style.filter = 'hue-rotate(0deg)';
+                rain.innerHTML = '';
                 
                 const msg = document.createElement('p');
                 msg.className = 'terminal-line success';
-                msg.textContent = '> 🐇 Has seguido al conejo blanco. Bienvenido a la Matrix.';
+                msg.textContent = '> ✅ Acceso concedido. Has atravesado el agujero de datos.';
                 terminalOutput.appendChild(msg);
                 terminalOutput.scrollTop = terminalOutput.scrollHeight;
                 matrixActivated = false;
-            }, 6000);
+                clearInterval(glitchInterval);
+            }, 7000);
         }
 
         // ============================================================
@@ -911,13 +932,11 @@
                         // COMANDO: flag [contraseña]
                         // ============================================
                         if (cmdKey === 'flag') {
-                            // Extraer la contraseña (todo después de "flag ")
                             const password = input.substring(5).trim();
                             
                             if (password === PASSWORD) {
-                                // ✅ Contraseña correcta → EFECTO MATRIX
                                 response.className = 'terminal-line success';
-                                response.textContent = '> 🐇 Contraseña correcta. Accediendo a la Matrix...';
+                                response.textContent = '> ✅ Clave correcta. Accediendo al agujero de datos...';
                                 output.appendChild(response);
                                 output.scrollTop = output.scrollHeight;
                                 
@@ -925,9 +944,8 @@
                                     triggerMatrixEffect();
                                 }, 800);
                             } else {
-                                // ❌ Contraseña incorrecta
                                 response.className = 'terminal-line error';
-                                response.textContent = '> ❌ Contraseña incorrecta. El conejo blanco no te ha guiado.';
+                                response.textContent = '> ❌ Clave incorrecta. Acceso denegado.';
                                 output.appendChild(response);
                                 output.scrollTop = output.scrollHeight;
                             }
@@ -965,10 +983,9 @@
         // ============================================================
         // EASTER EGG EN CONSOLA
         // ============================================================
-        console.log('%c🐇 Sigue al conejo blanco...', 'color: #00ff41; font-size: 20px; font-weight: bold;');
-        console.log('%c🔍 El binario en el código fuente esconde la contraseña', 'color: #ffbd2e; font-size: 14px;');
-        console.log('%c💡 Formato: flag [contraseña]', 'color: #ffbd2e; font-size: 14px;');
-        console.log('%c👀 ¡Buen ojo, hacker!', 'color: #ff5f56; font-size: 14px;');
+        console.log('%c🔍 El código fuente esconde un mensaje...', 'color: #00ff41; font-size: 18px; font-weight: bold;');
+        console.log('%c💡 Formato: flag [clave]', 'color: #ffbd2e; font-size: 14px;');
+        console.log('%c👀 ¿Puedes descifrarlo?', 'color: #ff5f56; font-size: 14px;');
     </script>
 </body>
 </html>
