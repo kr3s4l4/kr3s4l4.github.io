@@ -167,7 +167,7 @@
         }
         
         /* ============================================================ */
-        /* EFECTO TÚNEL DE DATOS CON VÉRTIGO */
+        /* EFECTO "DESINTEGRACIÓN + TÚNEL + GLITCH" */
         /* ============================================================ */
         .matrix-overlay {
             position: fixed;
@@ -183,137 +183,232 @@
             font-family: 'JetBrains Mono', monospace;
             color: #00ff41;
             overflow: hidden;
+            perspective: 1200px;
         }
         .matrix-overlay.active {
             display: flex;
         }
         
-        .data-tunnel-3d {
+        /* ============================================================ */
+        /* EFECTO 1: TÚNEL 3D CON ANILLOS */
+        /* ============================================================ */
+        .tunnel-container {
             position: absolute;
             width: 100%;
             height: 100%;
             top: 0;
             left: 0;
             transform-style: preserve-3d;
-            animation: tunnelFall 4s ease-in-out infinite;
+            animation: tunnelRotate 20s linear infinite;
         }
-        @keyframes tunnelFall {
-            0% { transform: rotateX(0deg) translateZ(0px); }
-            50% { transform: rotateX(5deg) translateZ(-200px); }
-            100% { transform: rotateX(0deg) translateZ(0px); }
+        @keyframes tunnelRotate {
+            0% { transform: rotateY(0deg) rotateX(10deg); }
+            100% { transform: rotateY(360deg) rotateX(10deg); }
         }
         
-        .tunnel-ring {
+        .tunnel-ring-3d {
             position: absolute;
             top: 50%;
             left: 50%;
-            transform: translate(-50%, -50%) rotateX(70deg);
-            border: 2px solid rgba(0, 255, 65, 0.3);
+            transform: translate(-50%, -50%) rotateX(75deg);
+            border: 2px solid rgba(0, 255, 65, 0.2);
             border-radius: 50%;
-            animation: ringPulse 2s ease-in-out infinite;
-            box-shadow: 0 0 30px rgba(0, 255, 65, 0.1);
+            animation: ringExpand 3s ease-in-out infinite;
+            box-shadow: 0 0 40px rgba(0, 255, 65, 0.1), inset 0 0 40px rgba(0, 255, 65, 0.05);
         }
-        @keyframes ringPulse {
-            0% { width: 200px; height: 200px; opacity: 0.8; }
-            50% { width: 600px; height: 600px; opacity: 0.2; }
-            100% { width: 200px; height: 200px; opacity: 0.8; }
+        @keyframes ringExpand {
+            0% { width: 50px; height: 50px; opacity: 0.8; }
+            50% { width: 800px; height: 800px; opacity: 0.1; }
+            100% { width: 50px; height: 50px; opacity: 0.8; }
         }
         
-        .data-rain {
+        /* ============================================================ */
+        /* EFECTO 2: LLUVIA DE CÓDIGO MATRIX EN 3D */
+        /* ============================================================ */
+        .matrix-rain-3d {
             position: absolute;
             width: 100%;
             height: 100%;
             top: 0;
             left: 0;
             overflow: hidden;
+            transform-style: preserve-3d;
         }
-        .data-drop {
+        .code-stream {
             position: absolute;
-            font-size: 16px;
+            font-size: 14px;
             color: #00ff41;
-            opacity: 0.8;
+            opacity: 0.7;
             white-space: nowrap;
-            animation: dataFall linear infinite;
-            text-shadow: 0 0 10px rgba(0, 255, 65, 0.3);
+            animation: codeFall linear infinite;
+            text-shadow: 0 0 15px rgba(0, 255, 65, 0.5);
             font-family: 'JetBrains Mono', monospace;
+            transform: translateZ(0);
         }
-        @keyframes dataFall {
-            0% { transform: translateY(-100vh) rotate(0deg) scale(1); opacity: 0; }
-            10% { opacity: 0.8; }
-            80% { opacity: 0.8; }
-            100% { transform: translateY(100vh) rotate(360deg) scale(0.5); opacity: 0; }
+        @keyframes codeFall {
+            0% { transform: translateY(-100vh) translateZ(0) scale(0.8); opacity: 0; }
+            10% { opacity: 0.9; }
+            80% { opacity: 0.9; }
+            100% { transform: translateY(100vh) translateZ(-500px) scale(0.3); opacity: 0; }
         }
         
-        .glitch-overlay {
+        /* ============================================================ */
+        /* EFECTO 3: PIXELACIÓN / DESINTEGRACIÓN */
+        /* ============================================================ */
+        .pixel-disintegration {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        .pixel-block {
+            position: absolute;
+            background: rgba(0, 255, 65, 0.15);
+            border: 1px solid rgba(0, 255, 65, 0.1);
+            animation: pixelFall 3s ease-in forwards;
+            box-shadow: 0 0 10px rgba(0, 255, 65, 0.1);
+        }
+        @keyframes pixelFall {
+            0% { transform: translateY(0) scale(1) rotate(0deg); opacity: 0.8; }
+            100% { transform: translateY(100vh) scale(0.2) rotate(720deg); opacity: 0; }
+        }
+        
+        /* ============================================================ */
+        /* EFECTO 4: GLITCH / INTERFERENCIA CRT */
+        /* ============================================================ */
+        .glitch-layer {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
+            pointer-events: none;
             background: repeating-linear-gradient(
                 0deg,
                 transparent 0px,
-                transparent 3px,
-                rgba(0, 255, 65, 0.03) 3px,
-                rgba(0, 255, 65, 0.03) 4px
+                transparent 2px,
+                rgba(0, 255, 65, 0.05) 2px,
+                rgba(0, 255, 65, 0.05) 4px
             );
-            animation: glitchScan 0.1s infinite;
-            pointer-events: none;
+            animation: glitchScan 0.05s infinite;
+            mix-blend-mode: screen;
         }
         @keyframes glitchScan {
-            0% { transform: translateY(0); }
-            100% { transform: translateY(5px); }
+            0% { transform: translateY(0) skewX(0deg); }
+            25% { transform: translateY(10px) skewX(2deg); }
+            50% { transform: translateY(-5px) skewX(-2deg); }
+            75% { transform: translateY(15px) skewX(1deg); }
+            100% { transform: translateY(0) skewX(0deg); }
         }
         
+        /* ============================================================ */
+        /* EFECTO 5: FLASHES Y DESTELLOS */
+        /* ============================================================ */
+        .flash-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #00ff41;
+            opacity: 0;
+            pointer-events: none;
+            animation: flashPulse 0.5s ease-in-out infinite alternate;
+            mix-blend-mode: screen;
+        }
+        @keyframes flashPulse {
+            0% { opacity: 0; }
+            100% { opacity: 0.08; }
+        }
+        
+        /* ============================================================ */
+        /* EFECTO 6: TEXTURA DE SEÑAL PERTURBADA */
+        /* ============================================================ */
+        .signal-noise {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(0, 255, 65, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(0, 255, 65, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 50% 50%, rgba(0, 255, 65, 0.05) 0%, transparent 70%);
+            animation: noisePulse 2s ease-in-out infinite alternate;
+        }
+        @keyframes noisePulse {
+            0% { opacity: 0.3; transform: scale(1); }
+            100% { opacity: 0.8; transform: scale(1.1); }
+        }
+        
+        /* ============================================================ */
+        /* TEXTO CENTRAL CON EFECTO HIPNÓTICO */
+        /* ============================================================ */
         .matrix-center-text {
             position: relative;
             z-index: 10;
             text-align: center;
-            background: rgba(0, 0, 0, 0.7);
-            padding: 2rem 3rem;
+            background: rgba(0, 0, 0, 0.75);
+            padding: 2.5rem 4rem;
             border: 2px solid #00ff41;
-            border-radius: 8px;
-            box-shadow: 0 0 60px rgba(0, 255, 65, 0.3);
-            animation: pulseGlow 1s infinite alternate;
+            border-radius: 12px;
+            box-shadow: 0 0 80px rgba(0, 255, 65, 0.3), 0 0 160px rgba(0, 255, 65, 0.1);
+            animation: centerPulse 1s infinite alternate;
+            backdrop-filter: blur(10px);
         }
-        @keyframes pulseGlow {
-            0% { box-shadow: 0 0 30px rgba(0, 255, 65, 0.2); transform: scale(1); }
-            50% { transform: scale(1.02); }
-            100% { box-shadow: 0 0 80px rgba(0, 255, 65, 0.6); transform: scale(1); }
+        @keyframes centerPulse {
+            0% { box-shadow: 0 0 40px rgba(0, 255, 65, 0.2), 0 0 80px rgba(0, 255, 65, 0.1); transform: scale(1); }
+            100% { box-shadow: 0 0 80px rgba(0, 255, 65, 0.5), 0 0 160px rgba(0, 255, 65, 0.2); transform: scale(1.03); }
         }
         .matrix-center-text .line {
-            font-size: 1.2rem;
-            margin: 0.3rem 0;
+            font-size: 1.3rem;
+            margin: 0.4rem 0;
             opacity: 0;
-            animation: typeIn 0.1s forwards;
+            animation: typeIn 0.12s forwards;
         }
         .matrix-center-text .line.dim {
-            opacity: 0.5;
-            font-size: 0.9rem;
+            opacity: 0.4;
+            font-size: 0.95rem;
         }
         .matrix-center-text .line.bright {
             color: #ffbd2e;
             font-weight: bold;
+            text-shadow: 0 0 30px rgba(255, 189, 46, 0.3);
         }
         @keyframes typeIn {
-            from { opacity: 0; transform: translateY(10px) scale(0.9); }
+            from { opacity: 0; transform: translateY(15px) scale(0.95); }
             to { opacity: 1; transform: translateY(0) scale(1); }
         }
         
         .hacked-text {
-            font-size: 1.8rem;
+            font-size: 2rem;
             font-weight: bold;
             color: #00ff41;
-            animation: blink 0.5s infinite alternate;
-            text-shadow: 0 0 30px #00ff41;
+            animation: textBlink 0.6s infinite alternate;
+            text-shadow: 0 0 40px #00ff41, 0 0 80px rgba(0, 255, 65, 0.4);
         }
-        @keyframes blink {
-            0% { opacity: 0.3; text-shadow: 0 0 10px #00ff41; }
-            100% { opacity: 1; text-shadow: 0 0 60px #00ff41, 0 0 120px #00ff41; }
+        @keyframes textBlink {
+            0% { opacity: 0.4; text-shadow: 0 0 20px #00ff41; }
+            100% { opacity: 1; text-shadow: 0 0 60px #00ff41, 0 0 120px rgba(0, 255, 65, 0.6); }
+        }
+        
+        .sub-message {
+            font-size: 0.8rem;
+            opacity: 0.25;
+            margin-top: 0.5rem;
+            animation: subPulse 3s ease-in-out infinite;
+        }
+        @keyframes subPulse {
+            0%, 100% { opacity: 0.25; }
+            50% { opacity: 0.5; }
         }
         
         /* ============================================================ */
-        /*                     BINARIO OCULTO                           */
+        /* BINARIO OCULTO */
         /* ============================================================ */
         .binary-hidden {
             display: none;
@@ -471,7 +566,7 @@
         </section>
 
         <!-- ============================================================ -->
-        <!-- RESTO DE SECCIONES (EXPERIENCIA, WRITEUPS, ETC) -->
+        <!-- RESTO DE SECCIONES -->
         <!-- ============================================================ -->
         <section class="experience">
             <h2>Experiencia Profesional</h2>
@@ -717,7 +812,7 @@
         </section>
 
         <!-- ============================================================ -->
-        <!-- FOOTER CON EASTER EGG (SOLO BINARIO) -->
+        <!-- FOOTER CON EASTER EGG -->
         <!-- ============================================================ -->
         <footer>
             <p>© 2026 kr3s4l4. Hecho con ❤️ y ☕</p>
@@ -733,25 +828,41 @@
     </div>
 
     <!-- ============================================================ -->
-    <!-- MATRIX OVERLAY - EFECTO DE CAÍDA / VÉRTIGO -->
+    <!-- MATRIX OVERLAY - EFECTO "DESINTEGRACIÓN + TÚNEL + GLITCH" -->
     <!-- ============================================================ -->
     <div class="matrix-overlay" id="matrixOverlay">
-        <div class="data-tunnel-3d" id="dataTunnel3d">
-            <div class="tunnel-ring" style="animation-delay: 0s; width: 100px; height: 100px;"></div>
-            <div class="tunnel-ring" style="animation-delay: 0.3s; width: 200px; height: 200px;"></div>
-            <div class="tunnel-ring" style="animation-delay: 0.6s; width: 300px; height: 300px;"></div>
-            <div class="tunnel-ring" style="animation-delay: 0.9s; width: 400px; height: 400px;"></div>
-            <div class="tunnel-ring" style="animation-delay: 1.2s; width: 500px; height: 500px;"></div>
-            <div class="tunnel-ring" style="animation-delay: 1.5s; width: 600px; height: 600px;"></div>
-            <div class="tunnel-ring" style="animation-delay: 1.8s; width: 700px; height: 700px;"></div>
-            <div class="tunnel-ring" style="animation-delay: 2.1s; width: 800px; height: 800px;"></div>
-            <div class="tunnel-ring" style="animation-delay: 2.4s; width: 900px; height: 900px;"></div>
-            <div class="tunnel-ring" style="animation-delay: 2.7s; width: 1000px; height: 1000px;"></div>
+        <!-- TÚNEL 3D -->
+        <div class="tunnel-container" id="tunnelContainer">
+            <div class="tunnel-ring-3d" style="animation-delay: 0s; width: 80px; height: 80px;"></div>
+            <div class="tunnel-ring-3d" style="animation-delay: 0.3s; width: 160px; height: 160px;"></div>
+            <div class="tunnel-ring-3d" style="animation-delay: 0.6s; width: 240px; height: 240px;"></div>
+            <div class="tunnel-ring-3d" style="animation-delay: 0.9s; width: 320px; height: 320px;"></div>
+            <div class="tunnel-ring-3d" style="animation-delay: 1.2s; width: 400px; height: 400px;"></div>
+            <div class="tunnel-ring-3d" style="animation-delay: 1.5s; width: 480px; height: 480px;"></div>
+            <div class="tunnel-ring-3d" style="animation-delay: 1.8s; width: 560px; height: 560px;"></div>
+            <div class="tunnel-ring-3d" style="animation-delay: 2.1s; width: 640px; height: 640px;"></div>
+            <div class="tunnel-ring-3d" style="animation-delay: 2.4s; width: 720px; height: 720px;"></div>
+            <div class="tunnel-ring-3d" style="animation-delay: 2.7s; width: 800px; height: 800px;"></div>
+            <div class="tunnel-ring-3d" style="animation-delay: 3.0s; width: 880px; height: 880px;"></div>
+            <div class="tunnel-ring-3d" style="animation-delay: 3.3s; width: 960px; height: 960px;"></div>
         </div>
         
-        <div class="data-rain" id="dataRain"></div>
-        <div class="glitch-overlay"></div>
+        <!-- LLUVIA DE CÓDIGO MATRIX -->
+        <div class="matrix-rain-3d" id="matrixRain3d"></div>
         
+        <!-- PIXELACIÓN / DESINTEGRACIÓN -->
+        <div class="pixel-disintegration" id="pixelDisintegration"></div>
+        
+        <!-- GLITCH / INTERFERENCIA CRT -->
+        <div class="glitch-layer"></div>
+        
+        <!-- FLASHES -->
+        <div class="flash-overlay"></div>
+        
+        <!-- SEÑAL PERTURBADA -->
+        <div class="signal-noise"></div>
+        
+        <!-- TEXTO CENTRAL -->
         <div class="matrix-center-text" id="matrixCenterText">
             <div class="line bright" style="animation-delay: 0.1s;">> INICIANDO PROTOCOLO DE ACCESO...</div>
             <div class="line" style="animation-delay: 0.4s;">> Descifrando clave de acceso...</div>
@@ -759,10 +870,11 @@
             <div class="line dim" style="animation-delay: 1.0s;">> Estableciendo túnel de datos...</div>
             <div class="line dim" style="animation-delay: 1.3s;">> Cargando módulos de realidad...</div>
             <div class="line" style="animation-delay: 1.6s;">> Inyectando protocolo de entrenamiento...</div>
-            <div class="line bright" style="animation-delay: 1.9s; color: #ffbd2e;">> ACCESO CONCEDIDO</div>
-            <div class="hacked-text" style="animation-delay: 2.3s;">> ⚡ BIENVENIDO AL AGUJERO DE DATOS ⚡</div>
-            <div class="line dim" style="animation-delay: 2.7s; font-size: 0.7rem; opacity: 0.3;">
-                > ¿Qué tan profundo quieres llegar?
+            <div class="line" style="animation-delay: 1.9s;">> Desintegrando la realidad actual...</div>
+            <div class="line bright" style="animation-delay: 2.2s; color: #ffbd2e;">> ACCESO CONCEDIDO</div>
+            <div class="hacked-text" style="animation-delay: 2.6s;">> ⚡ BIENVENIDO AL AGUJERO DE DATOS ⚡</div>
+            <div class="sub-message" style="animation-delay: 3.0s;">
+                > La realidad es solo una ilusión...
             </div>
         </div>
     </div>
@@ -835,7 +947,6 @@
         const terminalOutput = document.getElementById('terminal-output');
         let matrixActivated = false;
 
-        // CONTRASEÑA CORRECTA
         const PASSWORD = 'S1gu3 4l c0n3jo Bl4nc0';
 
         const validCommands = {
@@ -848,55 +959,105 @@
         };
 
         // ============================================================
-        // EFECTO MATRIX
+        // EFECTO MATRIX - VERSIÓN IMPRESIONANTE
         // ============================================================
         function triggerMatrixEffect() {
             if (matrixActivated) return;
             matrixActivated = true;
 
             const overlay = document.getElementById('matrixOverlay');
-            const rain = document.getElementById('dataRain');
+            const rainContainer = document.getElementById('matrixRain3d');
+            const pixelContainer = document.getElementById('pixelDisintegration');
             
-            rain.innerHTML = '';
+            // ==========================================================
+            // 1. GENERAR LLUVIA DE CÓDIGO MATRIX EN 3D
+            // ==========================================================
+            rainContainer.innerHTML = '';
             const chars = '0123456789ABCDEF!@#$%^&*()_+-=<>?/:;[]{}\\|';
-            for (let i = 0; i < 60; i++) {
-                const drop = document.createElement('div');
-                drop.className = 'data-drop';
+            for (let i = 0; i < 80; i++) {
+                const stream = document.createElement('div');
+                stream.className = 'code-stream';
                 let text = '';
-                for (let j = 0; j < 20 + Math.random() * 30; j++) {
+                const length = 15 + Math.floor(Math.random() * 35);
+                for (let j = 0; j < length; j++) {
                     text += chars[Math.floor(Math.random() * chars.length)];
                 }
-                drop.textContent = text;
-                drop.style.left = (Math.random() * 100) + '%';
-                drop.style.fontSize = (12 + Math.random() * 18) + 'px';
-                drop.style.animationDuration = (2 + Math.random() * 4) + 's';
-                drop.style.animationDelay = (Math.random() * 3) + 's';
-                drop.style.opacity = 0.3 + Math.random() * 0.6;
-                rain.appendChild(drop);
+                stream.textContent = text;
+                stream.style.left = (Math.random() * 100) + '%';
+                stream.style.fontSize = (10 + Math.random() * 22) + 'px';
+                stream.style.animationDuration = (2.5 + Math.random() * 4.5) + 's';
+                stream.style.animationDelay = (Math.random() * 4) + 's';
+                stream.style.opacity = 0.2 + Math.random() * 0.6;
+                rainContainer.appendChild(stream);
             }
 
+            // ==========================================================
+            // 2. GENERAR PIXELACIÓN / DESINTEGRACIÓN
+            // ==========================================================
+            pixelContainer.innerHTML = '';
+            const numPixels = 120;
+            for (let i = 0; i < numPixels; i++) {
+                const pixel = document.createElement('div');
+                pixel.className = 'pixel-block';
+                const size = 4 + Math.random() * 12;
+                pixel.style.width = size + 'px';
+                pixel.style.height = size + 'px';
+                pixel.style.left = (Math.random() * 100) + '%';
+                pixel.style.top = (Math.random() * 100) + '%';
+                pixel.style.animationDuration = (2 + Math.random() * 3) + 's';
+                pixel.style.animationDelay = (Math.random() * 2) + 's';
+                pixel.style.opacity = 0.1 + Math.random() * 0.4;
+                pixel.style.background = Math.random() > 0.5 ? 
+                    'rgba(0, 255, 65, 0.15)' : 
+                    'rgba(255, 189, 46, 0.08)';
+                pixelContainer.appendChild(pixel);
+            }
+
+            // ==========================================================
+            // 3. MOSTRAR OVERLAY
+            // ==========================================================
             overlay.classList.add('active');
 
+            // ==========================================================
+            // 4. EFECTO GLITCH INTENSO
+            // ==========================================================
             let glitchCount = 0;
             const glitchInterval = setInterval(() => {
-                if (glitchCount > 8) {
+                if (glitchCount > 12) {
                     clearInterval(glitchInterval);
                     return;
                 }
-                overlay.style.transform = 'translate(' + (Math.random() - 0.5) * 10 + 'px, ' + (Math.random() - 0.5) * 10 + 'px)';
-                overlay.style.filter = 'hue-rotate(' + (Math.random() * 10 - 5) + 'deg)';
+                // Movimiento brusco
+                overlay.style.transform = 'translate(' + 
+                    (Math.random() - 0.5) * 15 + 'px, ' + 
+                    (Math.random() - 0.5) * 15 + 'px)';
+                overlay.style.filter = 'hue-rotate(' + 
+                    (Math.random() * 15 - 7.5) + 'deg) brightness(' + 
+                    (0.8 + Math.random() * 0.4) + ')';
+                
+                // Distorsión de color
+                if (Math.random() > 0.7) {
+                    overlay.style.backgroundColor = 'rgba(0, 255, 65, 0.05)';
+                }
+                
                 setTimeout(() => {
                     overlay.style.transform = 'translate(0, 0)';
-                    overlay.style.filter = 'hue-rotate(0deg)';
-                }, 100);
+                    overlay.style.filter = 'hue-rotate(0deg) brightness(1)';
+                    overlay.style.backgroundColor = 'transparent';
+                }, 120);
                 glitchCount++;
-            }, 300);
+            }, 250);
 
+            // ==========================================================
+            // 5. LIMPIAR Y CERRAR
+            // ==========================================================
             setTimeout(() => {
                 overlay.classList.remove('active');
                 overlay.style.transform = 'translate(0, 0)';
-                overlay.style.filter = 'hue-rotate(0deg)';
-                rain.innerHTML = '';
+                overlay.style.filter = 'hue-rotate(0deg) brightness(1)';
+                overlay.style.backgroundColor = 'transparent';
+                rainContainer.innerHTML = '';
+                pixelContainer.innerHTML = '';
                 
                 const msg = document.createElement('p');
                 msg.className = 'terminal-line success';
@@ -905,7 +1066,7 @@
                 terminalOutput.scrollTop = terminalOutput.scrollHeight;
                 matrixActivated = false;
                 clearInterval(glitchInterval);
-            }, 7000);
+            }, 7500);
         }
 
         // ============================================================
@@ -928,9 +1089,6 @@
                         const parts = input.split(' ');
                         const cmdKey = parts[0].toLowerCase();
 
-                        // ============================================
-                        // COMANDO: flag [contraseña]
-                        // ============================================
                         if (cmdKey === 'flag') {
                             const password = input.substring(5).trim();
                             
@@ -953,18 +1111,12 @@
                             return;
                         }
 
-                        // ============================================
-                        // COMANDO: clear
-                        // ============================================
                         if (cmdKey === 'clear') {
                             output.innerHTML = '';
                             this.value = '';
                             return;
                         }
 
-                        // ============================================
-                        // COMANDOS WHITELIST
-                        // ============================================
                         if (validCommands[cmdKey]) {
                             response.textContent = '> ' + validCommands[cmdKey];
                         } else {
@@ -981,7 +1133,7 @@
         }
 
         // ============================================================
-        // EASTER EGG EN CONSOLA
+        // EASTER EGG
         // ============================================================
         console.log('%c🔍 El código fuente esconde un mensaje...', 'color: #00ff41; font-size: 18px; font-weight: bold;');
         console.log('%c💡 Formato: flag [clave]', 'color: #ffbd2e; font-size: 14px;');
