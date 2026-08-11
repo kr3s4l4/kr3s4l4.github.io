@@ -4,24 +4,221 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>kr3s4l4 - Ethical Hacking & CTF Writeups | Pentester</title>
-    <meta name="description" content="kr3s4l4 - Ethical Hacker, Pentester y CTF Player. Writeups de picoCTF (easy, medium, hard), Root-me (App-Script, Web-Server, Esteganografía) y torneos CTF como BroncoCTF y No-Hacking-No-CTF. Más de 103 retos resueltos. Aprende hacking ético con writeups detallados.">
+    <meta name="description" content="kr3s4l4 - Ethical Hacker, Pentester y CTF Player. Writeups de picoCTF (easy, medium, hard), Root-me (App-Script, Web-Server, Esteganografía) y torneos CTF como BroncoCTF y No-Hacking-No-CTF. Más de 117 retos resueltos. Aprende hacking ético con writeups detallados.">
     <meta name="keywords" content="kr3s4l4, Iñigo Goikoetxea, hacking ético, pentesting, writeups CTF, picoCTF español, Root-me, BroncoCTF 2026, L3akCTF 2026, vulnerabilidades web, Burp Suite">
     <meta name="author" content="kr3s4l4">
     <meta name="robots" content="index, follow">
     <meta property="og:title" content="kr3s4l4 - Ethical Hacking & CTF Writeups">
-    <meta property="og:description" content="Writeups de picoCTF (easy, medium, hard), Root-me (App-Script, Web-Server, Esteganografía) y torneos CTF. Más de 103 retos resueltos.">
+    <meta property="og:description" content="Writeups de picoCTF (easy, medium, hard), Root-me (App-Script, Web-Server, Esteganografía) y torneos CTF. Más de 117 retos resueltos.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://kr3s4l4.github.io/">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="kr3s4l4 - Ethical Hacking & CTF Writeups">
-    <meta name="twitter:description" content="Writeups de picoCTF, Root-me y torneos CTF. Más de 103 retos resueltos.">
+    <meta name="twitter:description" content="Writeups de picoCTF, Root-me y torneos CTF. Más de 117 retos resueltos.">
+    
+    <!-- ============================================================ -->
+    <!-- SEGURIDAD: CABECERAS Y POLÍTICAS -->
+    <!-- ============================================================ -->
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:;">
     <meta name="referrer" content="strict-origin-when-cross-origin">
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
     <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta name="format-detection" content="telephone=no">
 
     <link rel="stylesheet" href="assets/css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ============================================================ */
+        /* ESTILOS EXISTENTES */
+        /* ============================================================ */
+        @media (max-width: 768px) {
+            .writeup-grid.rootme-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+            }
+        }
+        @media (max-width: 480px) {
+            .writeup-grid.rootme-grid {
+                grid-template-columns: 1fr !important;
+            }
+        }
+        
+        @keyframes matrixGlow {
+            0% { text-shadow: 0 0 5px rgba(0, 255, 65, 0.3); }
+            50% { text-shadow: 0 0 20px rgba(0, 255, 65, 0.6), 0 0 40px rgba(0, 255, 65, 0.2); }
+            100% { text-shadow: 0 0 5px rgba(0, 255, 65, 0.3); }
+        }
+        .hacker-glow {
+            animation: matrixGlow 3s infinite;
+        }
+        
+        /* ============================================================ */
+        /* TERMINAL HACKER */
+        /* ============================================================ */
+        .hacker-terminal {
+            background: #0a0a0a;
+            border: 1px solid #00ff41;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            font-family: 'JetBrains Mono', monospace;
+            box-shadow: 0 0 30px rgba(0, 255, 65, 0.1);
+        }
+        .terminal-header {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 0.5rem;
+        }
+        .terminal-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+        .terminal-dot.red { background: #ff5f56; }
+        .terminal-dot.yellow { background: #ffbd2e; }
+        .terminal-dot.green { background: #27c93f; }
+        .terminal-title {
+            color: #888;
+            font-size: 0.7rem;
+            margin-left: 10px;
+            line-height: 12px;
+        }
+        .terminal-output {
+            color: #00ff41;
+            font-size: 0.9rem;
+            min-height: 80px;
+            max-height: 200px;
+            overflow-y: auto;
+            scrollbar-width: thin;
+            scrollbar-color: #00ff41 transparent;
+        }
+        .terminal-output::-webkit-scrollbar {
+            width: 4px;
+        }
+        .terminal-output::-webkit-scrollbar-thumb {
+            background: #00ff41;
+            border-radius: 2px;
+        }
+        .terminal-line {
+            margin: 0;
+            opacity: 0.7;
+        }
+        .terminal-line.dim {
+            opacity: 0.3;
+        }
+        .terminal-line.bright {
+            opacity: 1;
+        }
+        .terminal-line.matrix-effect {
+            opacity: 1;
+            color: #00ff41;
+            text-shadow: 0 0 10px #00ff41;
+        }
+        .terminal-input-line {
+            display: flex;
+            align-items: center;
+            margin-top: 0.5rem;
+        }
+        .terminal-prompt {
+            color: #00ff41;
+            font-size: 0.9rem;
+        }
+        .terminal-input {
+            background: transparent;
+            border: none;
+            color: #00ff41;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            padding: 0.3rem 0.5rem;
+            width: 100%;
+            outline: none;
+            caret-color: #00ff41;
+        }
+        .terminal-input::placeholder {
+            color: #444;
+            opacity: 0.5;
+        }
+        
+        /* ============================================================ */
+        /* BOTÓN MODO HACKER */
+        /* ============================================================ */
+        .hacker-btn {
+            background: transparent;
+            border: 1px solid #00ff41;
+            color: #00ff41;
+            padding: 0.3rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            transition: all 0.3s ease;
+        }
+        .hacker-btn:hover {
+            background: #00ff41;
+            color: #0a0a0a;
+            box-shadow: 0 0 20px rgba(0, 255, 65, 0.3);
+        }
+        
+        .hacker-notification {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #0a0a0a;
+            border: 2px solid #00ff41;
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            color: #00ff41;
+            font-family: 'JetBrains Mono', monospace;
+            z-index: 9999;
+            box-shadow: 0 0 40px rgba(0, 255, 65, 0.2);
+            animation: slideIn 0.5s ease;
+            max-width: 300px;
+        }
+        .hacker-notification small {
+            opacity: 0.5;
+            font-size: 0.7rem;
+        }
+        @keyframes slideIn {
+            from { transform: translateX(100px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        @keyframes fadeOut {
+            from { opacity: 1; }
+            to { opacity: 0; }
+        }
+        
+        /* ============================================================ */
+        /* EFECTO MATRIX PARA LA FLAG */
+        /* ============================================================ */
+        .matrix-reveal {
+            display: inline-block;
+            font-family: 'JetBrains Mono', monospace;
+            color: #00ff41;
+            text-shadow: 0 0 20px rgba(0, 255, 65, 0.8);
+            font-weight: bold;
+        }
+        .matrix-char {
+            display: inline-block;
+            animation: matrixRain 0.08s infinite alternate;
+        }
+        @keyframes matrixRain {
+            0% { opacity: 0.2; transform: translateY(-2px); }
+            100% { opacity: 1; transform: translateY(2px); }
+        }
+        .matrix-char.done {
+            animation: none;
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* ============================================================ */
+        /* BINARIO OCULTO (SOLO EN CÓDIGO FUENTE) */
+        /* ============================================================ */
+        .binary-hidden {
+            display: none; /* No visible en la página */
+        }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -47,7 +244,7 @@
 
             <!-- COLUMNA DERECHA: CONTENIDO -->
             <div class="hero-right">
-                <h1>Hola, soy <span class="highlight">kr3s4l4</span></h1>
+                <h1>Hola, soy <span class="highlight hacker-glow">kr3s4l4</span></h1>
                 <p class="subtitle">Ethical Hacker · Pentester · CTF Player</p>
                 <div class="hero-badges">
                     <span class="hero-badge">#Pentesting</span>
@@ -61,7 +258,7 @@
                         Ethical Hacker especializado en seguridad ofensiva y pentesting web. 
                         Enfocado en el análisis forense, la evaluación de vulnerabilidades y 
                         el desarrollo de writeups técnicos en español a través de laboratorios prácticos.
-                    <span class="description-highlight">103 retos CTF resueltos.</span>
+                    <span class="description-highlight">117 retos CTF resueltos.</span>
                 </p>
                 <div class="cta-buttons">
                     <a href="https://github.com/kr3s4l4" class="btn btn-primary">Ver GitHub</a>
@@ -77,7 +274,7 @@
         <!-- ============================================================ -->
         <section class="stats">
             <div class="stat-card">
-                <span class="stat-number">103</span>
+                <span class="stat-number">117</span>
                 <span class="stat-label">Retos Resueltos</span>
             </div>
             <div class="stat-card">
@@ -115,76 +312,76 @@
                     </ul>
                 </div>
                 <div class="about-tags">
-                    <!-- HERRAMIENTAS DE PENTESTING -->
                     <span class="tag">#Pentesting</span>
                     <span class="tag">#WiFiHacking</span>
                     <span class="tag">#Sniffing</span>
                     <span class="tag">#Phishing</span>
                     <span class="tag">#OSINT</span>
-                    
-                    <!-- HERRAMIENTAS PRINCIPALES -->
                     <span class="tag">#Metasploit</span>
                     <span class="tag">#BurpSuite</span>
                     <span class="tag">#OWASP-ZAP</span>
                     <span class="tag">#Shodan</span>
                     <span class="tag">#Maltego</span>
-                    
-                    <!-- ESCANEO Y RECONOCIMIENTO -->
                     <span class="tag">#Nmap</span>
                     <span class="tag">#Nikto</span>
                     <span class="tag">#Nessus</span>
                     <span class="tag">#TheHarvester</span>
-                    
-                    <!-- SQL Y BASE DE DATOS -->
                     <span class="tag">#SQL-Injection</span>
                     <span class="tag">#SQLmap</span>
-                    
-                    <!-- CRACKING Y PASSWORDS -->
                     <span class="tag">#Hashcat</span>
                     <span class="tag">#JohnTheRipper</span>
                     <span class="tag">#Cupp</span>
                     <span class="tag">#Cewl</span>
                     <span class="tag">#Hydra</span>
                     <span class="tag">#Ncrack</span>
-                    
-                    <!-- REDES Y ANÁLISIS -->
                     <span class="tag">#Wireshark</span>
                     <span class="tag">#Ngrok</span>
                     <span class="tag">#Bettercap</span>
                     <span class="tag">#Ettercap</span>
-                    
-                    <!-- WIFI HACKING -->
                     <span class="tag">#Aircrack</span>
                     <span class="tag">#Airgeddon</span>
-                    
-                    <!-- PHISHING Y SOCIAL ENGINEERING -->
                     <span class="tag">#EvilGinx</span>
                     <span class="tag">#BeEF</span>
                     <span class="tag">#Zphisher</span>
-                    
-                    <!-- GENERACIÓN DE PAYLOADS -->
                     <span class="tag">#Msfvenom</span>
                     <span class="tag">#TheFatRat</span>
                     <span class="tag">#Shellter</span>
-                    
-                    <!-- ESTEGANOGRAFÍA Y FORENSE -->
                     <span class="tag">#Exiftool</span>
                     <span class="tag">#Binwalk</span>
                     <span class="tag">#Steghide</span>
-                    
-                    <!-- SISTEMAS OPERATIVOS -->
                     <span class="tag">#Linux</span>
                     <span class="tag">#Windows</span>
                     <span class="tag">#Android</span>
                     <span class="tag">#Virtualización</span>
-                    
-                    <!-- HABILIDADES ADICIONALES -->
                     <span class="tag">#EthicalHacking</span>
                     <span class="tag">#Redes</span>
                     <span class="tag">#AdministradorSistemas</span>
                     <span class="tag">#Fotografía</span>
                     <span class="tag">#DiseñoGráfico</span>
                 </div>
+            </div>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- TERMINAL HACKER CON EFECTO MATRIX -->
+        <!-- ============================================================ -->
+        <section class="hacker-terminal">
+            <div class="terminal-header">
+                <span class="terminal-dot red"></span>
+                <span class="terminal-dot yellow"></span>
+                <span class="terminal-dot green"></span>
+                <span class="terminal-title">kr3s4l4@portfolio:~$</span>
+            </div>
+            <div class="terminal-output" id="terminal-output">
+                <p class="terminal-line">> Inicializando secuencia de hackeo...</p>
+                <p class="terminal-line dim">> Escaneando vulnerabilidades...</p>
+                <p class="terminal-line dim">> Acceso concedido. Bienvenido, hacker.</p>
+                <p class="terminal-line dim">> ¿Te atreves a hackear? Escribe: <span style="color: #ffbd2e;">help</span></p>
+                <p class="terminal-line dim" style="font-size: 0.8rem;">> Pista: El binario en el código fuente esconde un mensaje...</p>
+            </div>
+            <div class="terminal-input-line">
+                <span class="terminal-prompt">$</span>
+                <input type="text" class="terminal-input" id="terminal-input" placeholder="Escribe un comando..." autocomplete="off" aria-label="Terminal hacker">
             </div>
         </section>
 
@@ -269,57 +466,42 @@
             <!-- Root-me -->
             <div class="writeup-category">
                 <h3>🏴 Root-me</h3>
-                <div class="writeup-grid" style="grid-template-columns: repeat(4, 1fr);">
-                    <!-- Web-Server - 12 Retos COMPLETADOS -->
+                <div class="writeup-grid rootme-grid" style="grid-template-columns: repeat(4, 1fr);">
                     <div class="writeup-card">
                         <span class="difficulty hard">🌐 Web-Server</span>
                         <h4>12 Retos ✅</h4>
                         <a href="https://github.com/kr3s4l4/Writeups/tree/main/Rootme/Web-Server" class="btn-small">Ver</a>
                     </div>
-                    
-                    <!-- Web-Client - 10 Retos COMPLETADOS -->
                     <div class="writeup-card">
                         <span class="difficulty hard">🌍 Web-Client</span>
                         <h4>10 Retos ✅</h4>
                         <a href="https://github.com/kr3s4l4/Writeups/tree/main/Rootme/Web-Client" class="btn-small">Ver</a>
                     </div>
-                    
-                    <!-- App-Script - 12 Retos COMPLETADOS -->
                     <div class="writeup-card">
                         <span class="difficulty hard">📜 App-Script</span>
                         <h4>12 Retos ✅</h4>
                         <a href="https://github.com/kr3s4l4/Writeups/tree/main/Rootme/App-Script" class="btn-small">Ver</a>
                     </div>
-                    
-                    <!-- Esteganografía - 2 Retos COMPLETADOS -->
                     <div class="writeup-card">
                         <span class="difficulty hard">🖼️ Esteganografía</span>
                         <h4>2 Retos ✅</h4>
                         <a href="https://github.com/kr3s4l4/Writeups/tree/main/Rootme/Esteganografia" class="btn-small">Ver</a>
                     </div>
-                    
-                    <!-- App-System - PENDIENTE -->
                     <div class="writeup-card" style="opacity: 0.6; border: 2px dashed #555;">
                         <span class="difficulty easy">🖥️ App-System</span>
                         <h4>0 Retos ⏳</h4>
                         <span class="btn-small" style="background: #333; color: #666; cursor: default;">Próximamente</span>
                     </div>
-                    
-                    <!-- Cracking - PENDIENTE -->
                     <div class="writeup-card" style="opacity: 0.6; border: 2px dashed #555;">
                         <span class="difficulty easy">🔓 Cracking</span>
                         <h4>0 Retos ⏳</h4>
                         <span class="btn-small" style="background: #333; color: #666; cursor: default;">Próximamente</span>
                     </div>
-                    
-                    <!-- Forense - PENDIENTE -->
                     <div class="writeup-card" style="opacity: 0.6; border: 2px dashed #555;">
                         <span class="difficulty easy">🔍 Forense</span>
                         <h4>0 Retos ⏳</h4>
                         <span class="btn-small" style="background: #333; color: #666; cursor: default;">Próximamente</span>
                     </div>
-                    
-                    <!-- Network - PENDIENTE -->
                     <div class="writeup-card" style="opacity: 0.6; border: 2px dashed #555;">
                         <span class="difficulty easy">🌐 Network</span>
                         <h4>0 Retos ⏳</h4>
@@ -464,6 +646,12 @@
             <p class="contact-note">
                 📍 Bizkaia/Cantabria · 🇪🇸 Español nativo · 🗣️ Euskera (medio) · 🇬🇧 Inglés (bajo)
             </p>
+            
+            <div style="display: flex; justify-content: center; gap: 1rem; margin-top: 1.5rem;">
+                <button onclick="hackerMode()" class="hacker-btn">
+                    🔓 Activar Modo Hacker
+                </button>
+            </div>
         </section>
 
         <!-- ============================================================ -->
@@ -471,6 +659,26 @@
         <!-- ============================================================ -->
         <footer>
             <p>© 2026 kr3s4l4. Hecho con ❤️ y ☕</p>
+            
+            <!-- ========================================================== -->
+            <!-- EASTER EGG: El binario está OCULTO (solo visible en F12) -->
+            <!-- ========================================================== -->
+            <div class="binary-hidden">
+                <!-- 
+                    🔐 RETO OCULTO:
+                    El siguiente binario esconde un mensaje...
+                    01101000 01100001 01100011 01101011 00100000 01110100 01101000 01100101 00100000 01110000 01101100 01100001 01101110 01100101 01110100
+                    
+                    Pista: Descifra el binario y usa el comando en la terminal ;)
+                    Flag: CTF{3th1c4l_h4ck3r}
+                    
+                    ¿Lo has conseguido? ¡Buen trabajo, hacker!
+                -->
+            </div>
+            
+            <p style="font-size: 0.6rem; opacity: 0.15; margin-top: 0.2rem; font-family: 'JetBrains Mono', monospace;">
+                <!-- Pista: Revisa el código fuente (F12) para encontrar un mensaje oculto -->
+            </p>
         </footer>
 
     </div>
@@ -479,6 +687,9 @@
     <!-- JAVASCRIPT -->
     <!-- ============================================================ -->
     <script>
+        // ============================================================
+        // CARRUSEL DE GALERÍA
+        // ============================================================
         let slideIndex = 0;
         const slides = document.querySelectorAll('.carousel-slide');
         const dots = document.querySelectorAll('.dot');
@@ -488,7 +699,9 @@
             if (index < 0) slideIndex = slides.length - 1;
 
             const container = document.querySelector('.carousel-container');
-            container.style.transform = 'translateX(-' + (slideIndex * 100) + '%)';
+            if (container) {
+                container.style.transform = 'translateX(-' + (slideIndex * 100) + '%)';
+            }
 
             dots.forEach(function(dot, i) {
                 if (i === slideIndex) {
@@ -509,11 +722,235 @@
             showSlide(slideIndex);
         }
 
-        setInterval(function() {
+        let carouselInterval = setInterval(function() {
             moveSlide(1);
         }, 5000);
 
+        const carousel = document.querySelector('.carousel');
+        if (carousel) {
+            carousel.addEventListener('mouseenter', function() {
+                clearInterval(carouselInterval);
+            });
+            carousel.addEventListener('mouseleave', function() {
+                carouselInterval = setInterval(function() {
+                    moveSlide(1);
+                }, 5000);
+            });
+        }
+
         showSlide(0);
+
+        // ============================================================
+        // TERMINAL HACKER - COMANDOS
+        // ============================================================
+        const terminalInput = document.getElementById('terminal-input');
+        const terminalOutput = document.getElementById('terminal-output');
+        let flagRevealed = false;
+
+        const FLAG = 'CTF{3th1c4l_h4ck3r}';
+
+        // Comandos válidos (whitelist)
+        const validCommands = {
+            'help': 'Comandos: help, whoami, ls, hack, flag, clear, matrix, exit',
+            'whoami': 'kr3s4l4 - Ethical Hacker en formación | Pentester | CTF Player',
+            'ls': 'writeups/  herramientas/  certificaciones/  contacto/  README.md',
+            'clear': 'CLEAR',
+            'matrix': '🌐 Conectando a la matriz... Acceso concedido. Bienvenido, Neo.',
+            'exit': 'Cerrando sesión... Hasta la vista, hacker.',
+            '': 'Escribe un comando. Usa "help" para ver opciones.'
+        };
+
+        // ============================================================
+        // EFECTO MATRIX PARA "hack" (SIN FLAG)
+        // ============================================================
+        function hackEffect() {
+            const output = document.getElementById('terminal-output');
+            
+            const hackLine = document.createElement('p');
+            hackLine.className = 'terminal-line bright';
+            hackLine.style.color = '#ffbd2e';
+            hackLine.textContent = '> 🚀 INICIANDO SECUENCIA DE HACKEO...';
+            output.appendChild(hackLine);
+
+            setTimeout(() => {
+                const scanning = document.createElement('p');
+                scanning.className = 'terminal-line dim';
+                scanning.textContent = '> Escaneando sistema...';
+                output.appendChild(scanning);
+                output.scrollTop = output.scrollHeight;
+            }, 500);
+
+            setTimeout(() => {
+                const progress = document.createElement('p');
+                progress.className = 'terminal-line dim';
+                progress.textContent = '> Acceso: ################## 100%';
+                output.appendChild(progress);
+                output.scrollTop = output.scrollHeight;
+            }, 1200);
+
+            setTimeout(() => {
+                const msg = document.createElement('p');
+                msg.className = 'terminal-line bright';
+                msg.style.color = '#00ff41';
+                msg.textContent = '> ✅ Hackeo completado. ¿Quieres la flag? Usa "flag"';
+                output.appendChild(msg);
+                output.scrollTop = output.scrollHeight;
+            }, 2000);
+        }
+
+        // ============================================================
+        // REVELAR FLAG CON EFECTO MATRIX
+        // ============================================================
+        function revealFlag() {
+            if (flagRevealed) return;
+            flagRevealed = true;
+
+            const output = document.getElementById('terminal-output');
+
+            const hackLine = document.createElement('p');
+            hackLine.className = 'terminal-line bright';
+            hackLine.style.color = '#ffbd2e';
+            hackLine.textContent = '> 🚀 DESCIFRANDO FLAG...';
+            output.appendChild(hackLine);
+
+            setTimeout(() => {
+                const scanning = document.createElement('p');
+                scanning.className = 'terminal-line dim';
+                scanning.textContent = '> Decodificando binario...';
+                output.appendChild(scanning);
+                output.scrollTop = output.scrollHeight;
+            }, 500);
+
+            setTimeout(() => {
+                const flagLine = document.createElement('p');
+                flagLine.className = 'terminal-line bright';
+                flagLine.innerHTML = '> 🏴 Flag: <span class="matrix-reveal" id="matrix-flag"></span>';
+                output.appendChild(flagLine);
+                output.scrollTop = output.scrollHeight;
+
+                const flagContainer = document.getElementById('matrix-flag');
+                const chars = FLAG.split('');
+                
+                chars.forEach((char, index) => {
+                    const span = document.createElement('span');
+                    span.className = 'matrix-char';
+                    span.textContent = char;
+                    span.style.animationDelay = (index * 0.08) + 's';
+                    flagContainer.appendChild(span);
+                });
+
+                setTimeout(() => {
+                    document.querySelectorAll('.matrix-char').forEach(el => {
+                        el.classList.add('done');
+                    });
+                }, chars.length * 80 + 500);
+
+            }, 1200);
+
+            setTimeout(() => {
+                const msg = document.createElement('p');
+                msg.className = 'terminal-line dim';
+                msg.textContent = '> ✅ Flag obtenida. ¡Buen trabajo, hacker!';
+                output.appendChild(msg);
+                output.scrollTop = output.scrollHeight;
+            }, 2500);
+        }
+
+        // ============================================================
+        // PROCESAR COMANDOS
+        // ============================================================
+        if (terminalInput) {
+            terminalInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    const input = this.value.trim();
+                    const output = document.getElementById('terminal-output');
+                    
+                    const cmdLine = document.createElement('p');
+                    cmdLine.className = 'terminal-line';
+                    cmdLine.textContent = '> ' + input;
+                    output.appendChild(cmdLine);
+
+                    setTimeout(() => {
+                        const response = document.createElement('p');
+                        response.className = 'terminal-line dim';
+                        
+                        const cmdKey = input.toLowerCase();
+
+                        // Comando: hack → efecto Matrix SIN flag
+                        if (cmdKey === 'hack') {
+                            hackEffect();
+                            this.value = '';
+                            return;
+                        }
+
+                        // Comando: flag → revela flag con Matrix
+                        if (cmdKey === 'flag') {
+                            revealFlag();
+                            this.value = '';
+                            return;
+                        }
+
+                        // Comando: clear
+                        if (cmdKey === 'clear') {
+                            output.innerHTML = '';
+                            this.value = '';
+                            return;
+                        }
+
+                        // Whitelist de comandos
+                        if (validCommands[cmdKey]) {
+                            response.textContent = '> ' + validCommands[cmdKey];
+                        } else {
+                            response.textContent = '> Comando no reconocido. Usa "help" para ver opciones.';
+                        }
+                        
+                        output.appendChild(response);
+                        output.scrollTop = output.scrollHeight;
+                    }, 300);
+                    
+                    this.value = '';
+                }
+            });
+        }
+
+        // ============================================================
+        // MODO HACKER
+        // ============================================================
+        function hackerMode() {
+            document.body.style.background = '#0a0a0a';
+            document.body.style.color = '#00ff41';
+            
+            document.querySelectorAll('.highlight, .stat-number, .subtitle, h1, h2, h3, h4').forEach(el => {
+                el.style.color = '#00ff41';
+            });
+            
+            document.querySelectorAll('a').forEach(el => {
+                if (!el.href?.includes('github.com') && !el.href?.includes('linkedin.com') && !el.href?.includes('root-me.org')) {
+                    el.style.color = '#00ff41';
+                }
+            });
+            
+            const notification = document.createElement('div');
+            notification.className = 'hacker-notification';
+            notification.innerHTML = '🚀 Modo Hacker Activado<br><small style="opacity:0.5;">Usa "hack" o "flag" en la terminal</small>';
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.animation = 'fadeOut 1.5s ease forwards';
+                setTimeout(() => {
+                    notification.remove();
+                }, 1500);
+            }, 5000);
+        }
+
+        // ============================================================
+        // EASTER EGG EN CONSOLA
+        // ============================================================
+        console.log('%c🔐 Reto oculto encontrado!', 'color: #00ff41; font-size: 20px; font-weight: bold;');
+        console.log('%c📝 El binario en el código fuente esconde un mensaje...', 'color: #ffbd2e; font-size: 14px;');
+        console.log('%c💡 Pista: Descifra el binario y usa el comando en la terminal', 'color: #ffbd2e; font-size: 14px;');
+        console.log('%c🏴 Flag: CTF{3th1c4l_h4ck3r}', 'color: #00ff41; font-size: 16px; font-weight: bold;');
+        console.log('%c👀 ¡Buen ojo, hacker!', 'color: #ff5f56; font-size: 14px;');
     </script>
 </body>
 </html>
