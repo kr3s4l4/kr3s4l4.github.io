@@ -53,7 +53,7 @@
         }
         
         /* ============================================================ */
-        /* TERMINAL HACKER */
+        /* TERMINAL HACKER (OCULTA POR DEFECTO) */
         /* ============================================================ */
         .hacker-terminal {
             background: #0a0a0a;
@@ -63,7 +63,17 @@
             margin: 2rem 0;
             font-family: 'JetBrains Mono', monospace;
             box-shadow: 0 0 30px rgba(0, 255, 65, 0.1);
+            display: none;
         }
+        .hacker-terminal.visible {
+            display: block;
+            animation: fadeInTerminal 0.5s ease;
+        }
+        @keyframes fadeInTerminal {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
         .terminal-header {
             display: flex;
             gap: 8px;
@@ -110,6 +120,14 @@
         .terminal-line.bright {
             opacity: 1;
         }
+        .terminal-line.error {
+            color: #ff5f56;
+            opacity: 1;
+        }
+        .terminal-line.success {
+            color: #00ff41;
+            opacity: 1;
+        }
         .terminal-input-line {
             display: flex;
             align-items: center;
@@ -142,17 +160,22 @@
             background: transparent;
             border: 1px solid #00ff41;
             color: #00ff41;
-            padding: 0.3rem 1rem;
+            padding: 0.5rem 1.5rem;
             border-radius: 4px;
             cursor: pointer;
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.7rem;
+            font-size: 0.8rem;
             transition: all 0.3s ease;
         }
         .hacker-btn:hover {
             background: #00ff41;
             color: #0a0a0a;
-            box-shadow: 0 0 20px rgba(0, 255, 65, 0.3);
+            box-shadow: 0 0 30px rgba(0, 255, 65, 0.3);
+        }
+        .hacker-btn.activated {
+            background: #00ff41;
+            color: #0a0a0a;
+            border-color: #00ff41;
         }
         
         .hacker-notification {
@@ -205,7 +228,6 @@
             display: flex;
         }
         
-        /* Túnel de datos */
         .data-tunnel {
             position: absolute;
             width: 100%;
@@ -230,7 +252,6 @@
             100% { transform: translateY(100vh); opacity: 0; }
         }
         
-        /* Líneas de código en el centro */
         .matrix-center-text {
             position: relative;
             z-index: 10;
@@ -265,7 +286,6 @@
             to { opacity: 1; transform: translateY(0); }
         }
         
-        /* Texto "hackeado" que parpadea al final */
         .hacked-text {
             font-size: 1.8rem;
             font-weight: bold;
@@ -424,9 +444,9 @@
         </section>
 
         <!-- ============================================================ -->
-        <!-- TERMINAL HACKER -->
+        <!-- TERMINAL HACKER (OCULTA INICIALMENTE) -->
         <!-- ============================================================ -->
-        <section class="hacker-terminal">
+        <section class="hacker-terminal" id="hackerTerminal">
             <div class="terminal-header">
                 <span class="terminal-dot red"></span>
                 <span class="terminal-dot yellow"></span>
@@ -434,15 +454,14 @@
                 <span class="terminal-title">kr3s4l4@portfolio:~$</span>
             </div>
             <div class="terminal-output" id="terminal-output">
-                <p class="terminal-line">> Inicializando secuencia de hackeo...</p>
-                <p class="terminal-line dim">> Escaneando vulnerabilidades...</p>
-                <p class="terminal-line dim">> Acceso concedido. Bienvenido, hacker.</p>
-                <p class="terminal-line dim">> Escribe <span style="color: #ffbd2e;">help</span> para ver comandos</p>
-                <p class="terminal-line dim" style="font-size: 0.8rem;">> Pista: Revisa el código fuente (F12) ;)</p>
+                <p class="terminal-line">> Terminal hackeada activada.</p>
+                <p class="terminal-line dim">> Para activar el protocolo Matrix, necesitas la contraseña.</p>
+                <p class="terminal-line dim">> Formato: <span style="color: #ffbd2e;">flag [contraseña]</span></p>
+                <p class="terminal-line dim" style="font-size: 0.8rem;">> Pista: Revisa el código fuente (F12)</p>
             </div>
             <div class="terminal-input-line">
                 <span class="terminal-prompt">$</span>
-                <input type="text" class="terminal-input" id="terminal-input" placeholder="Escribe un comando..." autocomplete="off" aria-label="Terminal hacker">
+                <input type="text" class="terminal-input" id="terminal-input" placeholder="flag [contraseña]..." autocomplete="off" aria-label="Terminal hacker">
             </div>
         </section>
 
@@ -670,6 +689,9 @@
             </div>
         </section>
 
+        <!-- ============================================================ -->
+        <!-- CONTACTO CON BOTÓN MODO HACKER -->
+        <!-- ============================================================ -->
         <section class="contact">
             <h2>Conéctate Conmigo</h2>
             <div class="social-links">
@@ -683,26 +705,34 @@
                 📍 Bizkaia/Cantabria · 🇪🇸 Español nativo · 🗣️ Euskera (medio) · 🇬🇧 Inglés (bajo)
             </p>
             <div style="display: flex; justify-content: center; gap: 1rem; margin-top: 1.5rem;">
-                <button onclick="hackerMode()" class="hacker-btn">
+                <button onclick="activateHackerMode()" class="hacker-btn" id="hackerBtn">
                     🔓 Activar Modo Hacker
                 </button>
             </div>
         </section>
 
         <!-- ============================================================ -->
-        <!-- FOOTER -->
+        <!-- FOOTER CON EASTER EGG OCULTO -->
         <!-- ============================================================ -->
         <footer>
             <p>© 2026 kr3s4l4. Hecho con ❤️ y ☕</p>
             
-            <!-- EASTER EGG OCULTO (solo en F12) -->
+            <!-- ========================================================== -->
+            <!-- EASTER EGG: El binario está OCULTO (solo visible en F12) -->
+            <!-- ========================================================== -->
             <div class="binary-hidden">
                 <!-- 
                     🔐 RETO OCULTO:
-                    El binario esconde un mensaje...
-                    01101000 01100001 01100011 01101011 00100000 01110100 01101000 01100101 00100000 01110000 01101100 01100001 01101110 01100101 01110100
+                    El siguiente binario esconde la contraseña para el modo Matrix:
                     
-                    Pista: Descifra el binario y usa el comando en la terminal
+                    01010011 01101001 01100111 01110101 01100101 00100000 01100001 01101100 00100000 01100011 01101111 01101110 01100101 01101010 01101111 00100000 01100010 01101100 01100001 01101110 01100011 01101111
+                    
+                    Decodificado: "Sigue al conejo blanco"
+                    
+                    Instrucciones:
+                    1. Activa el Modo Hacker con el botón
+                    2. Escribe en la terminal: flag Sigue al conejo blanco
+                    3. ¡Disfruta del viaje!
                 -->
             </div>
             <p style="font-size: 0.6rem; opacity: 0.15; margin-top: 0.2rem; font-family: 'JetBrains Mono', monospace;">
@@ -718,16 +748,16 @@
     <div class="matrix-overlay" id="matrixOverlay">
         <div class="data-tunnel" id="dataTunnel"></div>
         <div class="matrix-center-text" id="matrixCenterText">
-            <div class="line bright" style="animation-delay: 0.1s;">> INICIANDO PROTOCOLO DE ACCESO...</div>
-            <div class="line" style="animation-delay: 0.3s;">> Descifrando binario...</div>
-            <div class="line" style="animation-delay: 0.6s;">> Conectando al servidor principal...</div>
-            <div class="line dim" style="animation-delay: 0.9s;">> Estableciendo túnel seguro...</div>
-            <div class="line dim" style="animation-delay: 1.2s;">> Cargando módulos de kernel...</div>
-            <div class="line" style="animation-delay: 1.5s;">> Inyectando payload...</div>
-            <div class="line bright" style="animation-delay: 1.8s; color: #ffbd2e;">> ACCESO CONCEDIDO</div>
-            <div class="hacked-text" style="animation-delay: 2.2s;">> ⚡ SISTEMA COMPROMETIDO ⚡</div>
+            <div class="line bright" style="animation-delay: 0.1s;">> SIGUE AL CONEJO BLANCO...</div>
+            <div class="line" style="animation-delay: 0.3s;">> Conectando a la Matrix...</div>
+            <div class="line" style="animation-delay: 0.6s;">> Cargando el código fuente...</div>
+            <div class="line dim" style="animation-delay: 0.9s;">> Estableciendo túnel de datos...</div>
+            <div class="line dim" style="animation-delay: 1.2s;">> Inyectando el programa de entrenamiento...</div>
+            <div class="line" style="animation-delay: 1.5s;">> Despertando al Neo interior...</div>
+            <div class="line bright" style="animation-delay: 1.8s; color: #ffbd2e;">> BIENVENIDO A LA MATRIX</div>
+            <div class="hacked-text" style="animation-delay: 2.2s;">> 🐇 EL CONEJO BLANCO TE HA GUIADO 🐇</div>
             <div class="line dim" style="animation-delay: 2.6s; font-size: 0.7rem; opacity: 0.3;">
-                > El viaje de datos ha terminado. Bienvenido.
+                > ¿Sabes lo profundo que es el agujero del conejo?
             </div>
         </div>
     </div>
@@ -776,18 +806,40 @@
         showSlide(0);
 
         // ============================================================
-        // TERMINAL
+        // ACTIVAR MODO HACKER (MOSTRAR TERMINAL)
+        // ============================================================
+        function activateHackerMode() {
+            const terminal = document.getElementById('hackerTerminal');
+            const btn = document.getElementById('hackerBtn');
+            
+            if (!terminal.classList.contains('visible')) {
+                terminal.classList.add('visible');
+                btn.textContent = '🔓 Modo Hacker Activado';
+                btn.classList.add('activated');
+                
+                // Enfocar el input
+                setTimeout(() => {
+                    document.getElementById('terminal-input').focus();
+                }, 300);
+            }
+        }
+
+        // ============================================================
+        // TERMINAL - PROCESAR COMANDOS
         // ============================================================
         const terminalInput = document.getElementById('terminal-input');
         const terminalOutput = document.getElementById('terminal-output');
-        let flagActivated = false;
+        let matrixActivated = false;
 
+        // La contraseña correcta (FRASE DE MATRIX)
+        const PASSWORD = 'Sigue al conejo blanco';
+
+        // Comandos válidos
         const validCommands = {
-            'help': 'Comandos: help, whoami, ls, hack, flag, clear, matrix, exit',
+            'help': 'Comandos: help, whoami, ls, clear, exit',
             'whoami': 'kr3s4l4 - Ethical Hacker en formación',
             'ls': 'writeups/  herramientas/  certificaciones/  contacto/',
             'clear': 'CLEAR',
-            'matrix': '🌐 Conectando a la matriz... Acceso concedido.',
             'exit': 'Cerrando sesión... Hasta la vista, hacker.',
             '': 'Escribe un comando. Usa "help" para ver opciones.'
         };
@@ -796,13 +848,12 @@
         // EFECTO TÚNEL DE DATOS / MATRIX
         // ============================================================
         function triggerMatrixEffect() {
-            if (flagActivated) return;
-            flagActivated = true;
+            if (matrixActivated) return;
+            matrixActivated = true;
 
             const overlay = document.getElementById('matrixOverlay');
             const tunnel = document.getElementById('dataTunnel');
             
-            // Generar "lluvia de datos" en el túnel
             tunnel.innerHTML = '';
             const chars = '0123456789ABCDEF!@#$%^&*()_+-=<>?/:;[]{}\\|';
             for (let i = 0; i < 40; i++) {
@@ -821,59 +872,19 @@
                 tunnel.appendChild(stream);
             }
 
-            // Mostrar overlay
             overlay.classList.add('active');
 
-            // Ocultar después de 6 segundos
             setTimeout(() => {
                 overlay.classList.remove('active');
                 tunnel.innerHTML = '';
-                // Mensaje en la terminal
+                
                 const msg = document.createElement('p');
-                msg.className = 'terminal-line bright';
-                msg.style.color = '#ffbd2e';
-                msg.textContent = '> 💀 El sistema ha sido comprometido. Disfruta del viaje.';
+                msg.className = 'terminal-line success';
+                msg.textContent = '> 🐇 Has seguido al conejo blanco. Bienvenido a la Matrix.';
                 terminalOutput.appendChild(msg);
                 terminalOutput.scrollTop = terminalOutput.scrollHeight;
-                flagActivated = false;
+                matrixActivated = false;
             }, 6000);
-        }
-
-        // ============================================================
-        // EFECTO HACK (SIMULACIÓN SIN FLAG)
-        // ============================================================
-        function hackEffect() {
-            const output = document.getElementById('terminal-output');
-            const hackLine = document.createElement('p');
-            hackLine.className = 'terminal-line bright';
-            hackLine.style.color = '#ffbd2e';
-            hackLine.textContent = '> 🚀 INICIANDO SECUENCIA DE HACKEO...';
-            output.appendChild(hackLine);
-
-            setTimeout(() => {
-                const scanning = document.createElement('p');
-                scanning.className = 'terminal-line dim';
-                scanning.textContent = '> Escaneando sistema...';
-                output.appendChild(scanning);
-                output.scrollTop = output.scrollHeight;
-            }, 500);
-
-            setTimeout(() => {
-                const progress = document.createElement('p');
-                progress.className = 'terminal-line dim';
-                progress.textContent = '> Acceso: ################## 100%';
-                output.appendChild(progress);
-                output.scrollTop = output.scrollHeight;
-            }, 1200);
-
-            setTimeout(() => {
-                const msg = document.createElement('p');
-                msg.className = 'terminal-line bright';
-                msg.style.color = '#00ff41';
-                msg.textContent = '> ✅ Hackeo completado. Usa "flag" para el siguiente nivel.';
-                output.appendChild(msg);
-                output.scrollTop = output.scrollHeight;
-            }, 2000);
         }
 
         // ============================================================
@@ -893,28 +904,49 @@
                     setTimeout(() => {
                         const response = document.createElement('p');
                         response.className = 'terminal-line dim';
-                        const cmdKey = input.toLowerCase();
+                        const parts = input.split(' ');
+                        const cmdKey = parts[0].toLowerCase();
 
-                        // FLAG → EFECTO MATRIX TOTAL
+                        // ============================================
+                        // COMANDO: flag [contraseña]
+                        // ============================================
                         if (cmdKey === 'flag') {
-                            triggerMatrixEffect();
+                            // Extraer la contraseña (todo después de "flag ")
+                            const password = input.substring(5).trim();
+                            
+                            if (password === PASSWORD) {
+                                // ✅ Contraseña correcta → EFECTO MATRIX
+                                response.className = 'terminal-line success';
+                                response.textContent = '> 🐇 Contraseña correcta. Accediendo a la Matrix...';
+                                output.appendChild(response);
+                                output.scrollTop = output.scrollHeight;
+                                
+                                setTimeout(() => {
+                                    triggerMatrixEffect();
+                                }, 800);
+                            } else {
+                                // ❌ Contraseña incorrecta
+                                response.className = 'terminal-line error';
+                                response.textContent = '> ❌ Contraseña incorrecta. El conejo blanco no te ha guiado.';
+                                output.appendChild(response);
+                                output.scrollTop = output.scrollHeight;
+                            }
                             this.value = '';
                             return;
                         }
 
-                        // HACK → EFECTO SIMULADO
-                        if (cmdKey === 'hack') {
-                            hackEffect();
-                            this.value = '';
-                            return;
-                        }
-
+                        // ============================================
+                        // COMANDO: clear
+                        // ============================================
                         if (cmdKey === 'clear') {
                             output.innerHTML = '';
                             this.value = '';
                             return;
                         }
 
+                        // ============================================
+                        // COMANDOS WHITELIST
+                        // ============================================
                         if (validCommands[cmdKey]) {
                             response.textContent = '> ' + validCommands[cmdKey];
                         } else {
@@ -924,40 +956,18 @@
                         output.appendChild(response);
                         output.scrollTop = output.scrollHeight;
                     }, 300);
+                    
                     this.value = '';
                 }
             });
         }
 
         // ============================================================
-        // MODO HACKER
-        // ============================================================
-        function hackerMode() {
-            document.body.style.background = '#0a0a0a';
-            document.body.style.color = '#00ff41';
-            document.querySelectorAll('.highlight, .stat-number, .subtitle, h1, h2, h3, h4').forEach(el => {
-                el.style.color = '#00ff41';
-            });
-            document.querySelectorAll('a').forEach(el => {
-                if (!el.href?.includes('github.com') && !el.href?.includes('linkedin.com') && !el.href?.includes('root-me.org')) {
-                    el.style.color = '#00ff41';
-                }
-            });
-            const notification = document.createElement('div');
-            notification.className = 'hacker-notification';
-            notification.innerHTML = '🚀 Modo Hacker Activado<br><small style="opacity:0.5;">Usa "flag" para el efecto Matrix</small>';
-            document.body.appendChild(notification);
-            setTimeout(() => {
-                notification.style.animation = 'fadeOut 1.5s ease forwards';
-                setTimeout(() => notification.remove(), 1500);
-            }, 5000);
-        }
-
-        // ============================================================
         // EASTER EGG EN CONSOLA
         // ============================================================
-        console.log('%c🔐 Reto oculto encontrado!', 'color: #00ff41; font-size: 20px; font-weight: bold;');
-        console.log('%c💡 Pista: Escribe "flag" en la terminal del portfolio', 'color: #ffbd2e; font-size: 14px;');
+        console.log('%c🐇 Sigue al conejo blanco...', 'color: #00ff41; font-size: 20px; font-weight: bold;');
+        console.log('%c🔍 El binario en el código fuente esconde la contraseña', 'color: #ffbd2e; font-size: 14px;');
+        console.log('%c💡 Formato: flag [contraseña]', 'color: #ffbd2e; font-size: 14px;');
         console.log('%c👀 ¡Buen ojo, hacker!', 'color: #ff5f56; font-size: 14px;');
     </script>
 </body>
