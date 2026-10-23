@@ -282,14 +282,28 @@
             opacity: 0.7;
             margin-top: 0.2rem;
         }
+
+        /* "Otra formación" discreta */
+        .cert-extra-title {
+            font-size: 0.8rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.4;
+            margin-top: 2rem;
+            margin-bottom: 0.4rem;
+            color: inherit;
+        }
         .cert-list {
             list-style: none;
             padding: 0;
-            margin-top: 1rem;
+            margin: 0;
         }
         .cert-list li {
-            padding: 0.3rem 0;
-            opacity: 0.85;
+            padding: 0.15rem 0;
+            font-size: 0.75rem;
+            opacity: 0.45;
+            line-height: 1.4;
         }
     </style>
 </head>
@@ -494,11 +508,11 @@
                 </div>
             </div>
 
-            <h3 style="margin-top: 2rem;">Otra formación</h3>
+            <p class="cert-extra-title">Otra formación</p>
             <ul class="cert-list">
-                <li>🎨 Estudios Superiores de Diseño Gráfico y Comunicación Audiovisual – 950 h – Notable (2004)</li>
-                <li>💻 Informática de Gestión, Multimedia e Internet (2002)</li>
-                <li>🔐 Curso intensivo de Hacking Ético (6 h) – Big School / El Pingüino de Mario (2025)</li>
+                <li>Estudios Superiores de Diseño Gráfico y Comunicación Audiovisual – 950 h – Notable (2004)</li>
+                <li>Informática de Gestión, Multimedia e Internet (2002)</li>
+                <li>Curso intensivo de Hacking Ético (6 h) – Big School / El Pingüino de Mario (2025)</li>
             </ul>
         </section>
 
@@ -1201,3 +1215,4 @@
         console.log('%c👀 ¿Puedes descifrarlo?', 'color: #ff5f56; font-size: 14px;');
     </script>
 </body>
+</html>
