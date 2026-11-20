@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyectos - kr3s4l4</title>
+    <meta name="description" content="Herramientas y programas propios de kr3s4l4. Catálogo de proyectos con ficha individual para cada uno.">
+    <meta name="author" content="kr3s4l4">
+    <meta name="robots" content="index, follow">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:;">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="stylesheet" href="../assets/css/style.css">
+
+    <style>
+        .proyectos-hero { padding: 1rem 0 0.5rem; }
+        .proyectos-hero p { max-width: 70ch; color: #8b949e; }
+        .proyectos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 14px;
+            margin-top: 1.5rem;
+        }
+        .proyecto-card {
+            background: #0f141a;
+            border: 1px solid #1f2933;
+            border-radius: 8px;
+            padding: 1.2rem;
+        }
+        .proyecto-card h3 {
+            font-family: 'JetBrains Mono', monospace;
+            color: #f0f6fc;
+            margin: 0.6rem 0;
+        }
+        .proyecto-card p { color: #8b949e; margin-bottom: 0.6rem; }
+        .proyecto-card ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            margin-top: 1rem;
+            padding: 0;
+        }
+        .back-link {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            color: #58a6ff;
+            text-decoration: none;
+        }
+        .back-link:hover { text-decoration: underline; }
+        .proyectos-footer {
+            margin-top: 2.5rem;
+            padding-top: 1rem;
+            border-top: 1px solid #1f2933;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            color: #6e7681;
+        }
+        .proyectos-footer a { color: #58a6ff; text-decoration: none; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <p><a class="back-link" href="../">← Volver al portafolio</a></p>
+
+        <header class="proyectos-hero">
+            <h2>Proyectos</h2>
+            <p>Herramientas y programas propios. Cada tarjeta abre su ficha completa.</p>
+        </header>
+
+        <div class="proyectos-grid">
+            <article class="proyecto-card">
+                <span class="difficulty easy">🛠️ Self-hosted · AGPL-3.0</span>
+                <h3>NetDiag</h3>
+                <p>Inventario y diagnóstico de red en un binario. Sin telemetría, sin nube y sin pago.</p>
+                <p>v1.5.2 · interfaz en español e inglés.</p>
+                <ul>
+                    <li><a class="btn-small" href="netdiag/">Ficha completa</a></li>
+                    <li><a class="btn-small" href="https://github.com/kr3s4l4/netdiag">Repo</a></li>
+                    <li><a class="btn-small" href="https://github.com/kr3s4l4/netdiag/releases/tag/v1.5.2">Release</a></li>
+                </ul>
+            </article>
+        </div>
+
+        <footer class="proyectos-footer">
+            © 2026 kr3s4l4 · <a href="../">Volver al inicio</a>
+        </footer>
+    </div>
+</body>
+</html>

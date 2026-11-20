@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NetDiag - kr3s4l4</title>
+    <meta name="description" content="NetDiag: escáner self-hosted de inventario y diagnóstico de red, gratuito y bajo AGPL-3.0. Funciones, licencia, privacidad y release.">
+    <meta name="author" content="kr3s4l4">
+    <meta name="robots" content="index, follow">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:;">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="stylesheet" href="../../assets/css/style.css">
+
+    <style>
+        .proyectos-hero { padding: 1rem 0 0.5rem; }
+        .proyectos-hero p { max-width: 75ch; color: #8b949e; }
+        .proyectos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 14px;
+            margin-top: 1.5rem;
+        }
+        .proyecto-card {
+            background: #0f141a;
+            border: 1px solid #1f2933;
+            border-radius: 8px;
+            padding: 1.2rem;
+        }
+        .proyecto-card h3 {
+            font-family: 'JetBrains Mono', monospace;
+            color: #f0f6fc;
+            margin: 0.6rem 0;
+        }
+        .proyecto-card p { color: #8b949e; margin-bottom: 0.6rem; }
+        .proyecto-card ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            margin-top: 1rem;
+        }
+        .detalle { margin-top: 2.5rem; max-width: 80ch; }
+        .detalle section { margin-bottom: 2rem; }
+        .detalle h3 {
+            font-family: 'JetBrains Mono', monospace;
+            color: #58a6ff;
+            font-size: 1.1rem;
+            margin-bottom: 0.6rem;
+        }
+        .detalle p, .detalle li { color: #c9d1d9; }
+        .detalle ul, .detalle ol { padding-left: 1.2rem; margin: 0.6rem 0; }
+        .detalle li { margin-bottom: 0.4rem; }
+        .detalle a { color: #58a6ff; }
+        .detalle code {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85em;
+            background: #161b22;
+            padding: 1px 5px;
+            border-radius: 4px;
+        }
+        .detalle pre {
+            background: #0f141a;
+            border: 1px solid #1f2933;
+            border-radius: 6px;
+            padding: 0.9rem;
+            overflow-x: auto;
+            margin: 0.8rem 0;
+        }
+        .detalle pre code { background: none; padding: 0; }
+        .aviso {
+            border-left: 3px solid #d29922;
+            padding-left: 0.9rem;
+            color: #8b949e;
+        }
+        .capturas {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 16px;
+            margin-top: 1rem;
+        }
+        .capturas figure {
+            margin: 0;
+            background: #0f141a;
+            border: 1px solid #1f2933;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .capturas img { width: 100%; height: auto; display: block; }
+        .capturas figcaption {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            color: #8b949e;
+            padding: 0.6rem 0.8rem;
+            border-top: 1px solid #1f2933;
+        }
+        .capturas-note { margin-top: 1rem; font-size: 0.8rem; color: #6e7681; }
+        .back-link {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            color: #58a6ff;
+            text-decoration: none;
+        }
+        .back-link:hover { text-decoration: underline; }
+        .proyectos-footer {
+            margin-top: 2.5rem;
+            padding-top: 1rem;
+            border-top: 1px solid #1f2933;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            color: #6e7681;
+        }
+        .proyectos-footer a { color: #58a6ff; text-decoration: none; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <p>
+            <a class="back-link" href="../">← Volver al catálogo</a>
+            <a class="back-link" href="../../">· Portafolio</a>
+        </p>
+
+        <header class="proyectos-hero">
+            <h2>NetDiag</h2>
+            <p>Ficha del proyecto. Para ver el resto, vuelve al <a href="../">catálogo de proyectos</a>.</p>
+        </header>
+
+        <div class="proyectos-grid">
+            <article class="proyecto-card">
+                <span class="difficulty easy">🛠️ Self-hosted · AGPL-3.0</span>
+                <h3>NetDiag</h3>
+                <p>Inventario y diagnóstico de red en un binario. Sin telemetría, sin nube y sin pago.</p>
+                <ul>
+                    <li><a class="btn-small" href="https://github.com/kr3s4l4/netdiag">Repo</a></li>
+                    <li><a class="btn-small" href="https://github.com/kr3s4l4/netdiag/releases/tag/v1.5.2">Release v1.5.2</a></li>
+                    <li><a class="btn-small" href="https://github.com/kr3s4l4/netdiag#readme">README</a></li>
+                </ul>
+            </article>
+        </div>
+
+        <div class="detalle">
+            <section>
+                <h3>Qué es NetDiag</h3>
+                <p>Escáner de red y monitor de inventario self-hosted. Un único binario Go con interfaz web en español e inglés. No necesita agentes, servicios en la nube ni dependencias en tiempo de ejecución. Guarda todo en SQLite, en tu máquina. Funciona offline.</p>
+                <p>La idea es simple: descubrir, identificar, almacenar, vigilar, alertar e informar. Está pensado para redes propias, laboratorios y entornos autorizados.</p>
+                <p class="aviso">Es beta y se entrega «tal cual», sin garantías. Úsalo solo en redes propias o con autorización explícita del propietario. Tú eliges qué se escanea y respondes por ello.</p>
+            </section>
+
+            <section>
+                <h3>Qué hace</h3>
+                <ul>
+                    <li><strong>Descubrimiento en tres fases:</strong> vecinos ARP e ICMP, barrido TCP y enriquecimiento con DNS inverso, banners, TLS, SNMP y LLDP/CDP.</li>
+                    <li><strong>Identidad estable:</strong> los hosts se identifican por MAC, no solo por IP. Las notas y etiquetas sobreviven a cambios de dirección. La identidad se separa por sede.</li>
+                    <li><strong>Multi-sede:</strong> oficinas, plantas o datacenters conviven en una sola base. El mismo CIDR puede repetirse en sedes distintas. Cada sede se puede exportar e importar.</li>
+                    <li><strong>Inventario y topología:</strong> fabricante por OUI, tipo de dispositivo, sistema operativo probable, puertos, servicios, certificados y modelo SNMP. El mapa L2/L3 se dibuja en SVG con zoom y agrupación por subred.</li>
+                    <li><strong>Diagnósticos:</strong> lazos STP, fugas de VLAN, desajustes de dúplex, problemas de MTU, tormentas de broadcast, AP no autorizados, cambios de gateway y certificados por caducar. Cada hallazgo incluye evidencia, confianza y limitaciones.</li>
+                    <li><strong>Vigilancia:</strong> escaneos programados, hosts nuevos o caídos, histórico de latencia y reglas de alerta con deduplicación y cooldown.</li>
+                    <li><strong>Informes y auditoría:</strong> PDF, CSV, JSON y HTML. Líneas base manuales por sede y comparación entre dos ventanas de tiempo.</li>
+                    <li><strong>Operación:</strong> tres roles (admin, operator, viewer), API OpenAPI 3.1, métricas Prometheus, copias ZIP y exportación de eventos a syslog, webhooks firmados y otras plataformas.</li>
+                </ul>
+                <p>Los diagnósticos infieren de tablas e históricos. Son pistas para investigar, no una confirmación protocolaria de un ataque. La captura pasiva es opcional y solo guarda metadatos.</p>
+            </section>
+
+            <section>
+                <h3>Capturas</h3>
+                <div class="capturas">
+                    <figure>
+                        <img src="../../assets/images/projects/panel.webp" alt="Panel principal de NetDiag con métricas de la red" loading="lazy">
+                        <figcaption>Panel principal</figcaption>
+                    </figure>
+                    <figure>
+                        <img src="../../assets/images/projects/dispositivos.webp" alt="Inventario de dispositivos de NetDiag" loading="lazy">
+                        <figcaption>Inventario de dispositivos</figcaption>
+                    </figure>
+                    <figure>
+                        <img src="../../assets/images/projects/topologia.webp" alt="Mapa de topología L2 y L3 de NetDiag" loading="lazy">
+                        <figcaption>Topología L2/L3</figcaption>
+                    </figure>
+                    <figure>
+                        <img src="../../assets/images/projects/diagnostico.webp" alt="Hallazgos de diagnósticos con evidencia y confianza" loading="lazy">
+                        <figcaption>Diagnósticos</figcaption>
+                    </figure>
+                    <figure>
+                        <img src="../../assets/images/projects/alertas.webp" alt="Listado de alertas de NetDiag" loading="lazy">
+                        <figcaption>Alertas</figcaption>
+                    </figure>
+                    <figure>
+                        <img src="../../assets/images/projects/informes.webp" alt="Generación de informes de NetDiag" loading="lazy">
+                        <figcaption>Informes</figcaption>
+                    </figure>
+                    <figure>
+                        <img src="../../assets/images/projects/explicacion.webp" alt="Vista de detalle de NetDiag" loading="lazy">
+                        <figcaption>Vista de detalle</figcaption>
+                    </figure>
+                </div>
+                <p class="capturas-note">Capturas con datos de ejemplo.</p>
+            </section>
+
+            <section>
+                <h3>Cómo empezar</h3>
+                <p>Necesitas Go 1.27 o superior. Para ARP activo, también <code>libpcap-dev</code> y gcc.</p>
+                <pre><code>git clone https://github.com/kr3s4l4/netdiag.git
+cd netdiag
+make build
+./bin/netdiag serve      # http://127.0.0.1:8080</code></pre>
+                <p>En el primer acceso se crea la cuenta de administrador. Después se elige la sede, se añade la subred a monitorizar y se lanza el primer escaneo. El asistente de arranque puede omitirse.</p>
+                <p>La configuración vive en <code>~/.config/netdiag/config.yaml</code> y los datos en <code>~/.local/share/netdiag</code>.</p>
+            </section>
+
+            <section>
+                <h3>Privacidad y seguridad</h3>
+                <p>No hay telemetría. El binario no informa de nada a ningún servidor. Tú decides qué se guarda y qué se comparte.</p>
+                <ul>
+                    <li>Contraseñas con Argon2id, sesiones en servidor, CSRF y límite de intentos.</li>
+                    <li>Cabeceras CSP y HSTS, auditoría de acciones y secretos cifrados con AES-256-GCM.</li>
+                    <li>Copias de seguridad ZIP con la base, la configuración y la clave local.</li>
+                    <li>Informes, diffs y snapshots se pueden empaquetar en contenedores <code>.ndc</code>: un ZIP con manifiesto, ficheros originales y firma minisign. La firma se verifica en local y usa una clave distinta de la de release.</li>
+                </ul>
+            </section>
+
+            <section>
+                <h3>Licencia y modelo</h3>
+                <p>NetDiag es <strong>software libre bajo AGPL-3.0</strong> y <strong>gratuito</strong>. No hay cuenta online, pago, licencia online ni DRM. No hay ediciones de pago ni soporte formal. La única cuenta es la de administrador local que se crea al arrancar.</p>
+                <p>Puedes usar, estudiar, modificar y redistribuir el programa. Si lo distribuyes, conserva los avisos de copyright y entrega la AGPL. Si ejecutas una versión modificada y la ofreces a otros usuarios a través de una red, la sección 13 de la AGPL exige ofrecerles el código fuente correspondiente. No hay cláusula de telemetría ni restricción de uso competitivo.</p>
+                <p>El binario sabe leer un fichero de licencia firmado con Ed25519. La comprobación es local: no contacta con ningún servidor. Es una capacidad técnica, no una oferta comercial. No activa funciones premium, no bloquea escaneos ni informes y nunca borra datos.</p>
+                <p>Las contribuciones se aceptan bajo DCO, sin CLA. Los avisos de dependencias de terceros están en <code>NOTICE</code> y <code>THIRD_PARTY_LICENSES.md</code>.</p>
+            </section>
+
+            <section>
+                <h3>Release y soporte</h3>
+                <p>La última release publicada es <strong>v1.5.2</strong>. Incluye binarios para amd64 y arm64, <code>SHA256SUMS</code>, SBOM CycloneDX, atestación de procedencia y firma minisign con la clave pública <code>c98b13d8c8f73259</code>. Los hashes se pueden comprobar antes de ejecutar nada.</p>
+                <p>No hay SLA ni soporte formal. Los errores y las preguntas técnicas van a GitHub Issues. Las preguntas generales, a GitHub Discussions. Las vulnerabilidades se reportan por el canal privado descrito en <code>SECURITY.md</code>.</p>
+            </section>
+
+            <section>
+                <h3>Enlaces</h3>
+                <ul>
+                    <li><a href="https://github.com/kr3s4l4/netdiag">Repositorio</a></li>
+                    <li><a href="https://github.com/kr3s4l4/netdiag/releases/tag/v1.5.2">Release v1.5.2</a></li>
+                    <li><a href="https://github.com/kr3s4l4/netdiag#readme">README</a></li>
+                    <li><a href="https://github.com/kr3s4l4/netdiag/blob/master/docs/licenciamiento.md">Licenciamiento</a> · <a href="https://github.com/kr3s4l4/netdiag/blob/master/LICENSE">LICENSE</a></li>
+                    <li><a href="https://github.com/kr3s4l4/netdiag/blob/master/docs/evidencia-firmada.md">Evidencia firmada</a> · <a href="https://github.com/kr3s4l4/netdiag/blob/master/SECURITY.md">SECURITY.md</a></li>
+                    <li><a href="https://github.com/kr3s4l4/netdiag/issues">Issues</a> · <a href="https://github.com/kr3s4l4/netdiag/discussions">Discussions</a></li>
+                    <li><a href="https://kr3s4l4.github.io/netdiag/plantillas/formulario-disposicion-pago.html">Manifiesto de caso de uso</a> (se genera en tu navegador; tú decides si lo envías)</li>
+                </ul>
+            </section>
+        </div>
+
+        <footer class="proyectos-footer">
+            © 2026 kr3s4l4 · <a href="../">Volver al catálogo</a> · <a href="../../">Portafolio</a>
+        </footer>
+    </div>
+</body>
+</html>
