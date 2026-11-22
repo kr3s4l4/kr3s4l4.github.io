@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NetDiag - kr3s4l4</title>
-    <meta name="description" content="NetDiag: escáner self-hosted de inventario y diagnóstico de red, gratuito y bajo AGPL-3.0. Funciones, licencia, privacidad y release.">
+    <meta name="description" content="NetDiag: escáner self-hosted de inventario y diagnóstico de red, gratuito y bajo AGPL-3.0. Funciones, licencia, privacidad y release. Self-hosted network inventory and diagnostics scanner.">
     <meta name="author" content="kr3s4l4">
     <meta name="robots" content="index, follow">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:;">
@@ -98,6 +98,15 @@
             border-top: 1px solid #1f2933;
         }
         .capturas-note { margin-top: 1rem; font-size: 0.8rem; color: #6e7681; }
+        .lang-nav {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            color: #8b949e;
+            margin-bottom: 0.5rem;
+        }
+        .lang-nav a { color: #58a6ff; text-decoration: none; }
+        .lang-nav a:hover { text-decoration: underline; }
+        .idioma-sep { border: 0; border-top: 1px solid #1f2933; margin: 3rem 0 0; }
         .back-link {
             font-family: 'JetBrains Mono', monospace;
             font-size: 0.8rem;
@@ -118,139 +127,278 @@
 </head>
 <body>
     <div class="container">
-        <p>
-            <a class="back-link" href="../">← Volver al catálogo</a>
-            <a class="back-link" href="../../">· Portafolio</a>
-        </p>
+        <p class="lang-nav">Idioma / Language: <a href="#espanol">Español</a> · <a href="#english">English</a></p>
 
-        <header class="proyectos-hero">
-            <h2>NetDiag</h2>
-            <p>Ficha del proyecto. Para ver el resto, vuelve al <a href="../">catálogo de proyectos</a>.</p>
-        </header>
+        <div id="espanol" lang="es">
+            <p>
+                <a class="back-link" href="../">← Volver al catálogo</a>
+                <a class="back-link" href="../../">· Portafolio</a>
+            </p>
 
-        <div class="proyectos-grid">
-            <article class="proyecto-card">
-                <span class="difficulty easy">🛠️ Self-hosted · AGPL-3.0</span>
-                <h3>NetDiag</h3>
-                <p>Inventario y diagnóstico de red en un binario. Sin telemetría, sin nube y sin servicios externos.</p>
-                <ul>
-                    <li><a class="btn-small" href="https://github.com/kr3s4l4/netdiag">Repo</a></li>
-                    <li><a class="btn-small" href="https://github.com/kr3s4l4/netdiag/releases/tag/v1.5.2">Release v1.5.2</a></li>
-                    <li><a class="btn-small" href="https://github.com/kr3s4l4/netdiag#readme">README</a></li>
-                </ul>
-            </article>
-        </div>
+            <header class="proyectos-hero">
+                <h2>NetDiag</h2>
+                <p>Ficha del proyecto. Para ver el resto, vuelve al <a href="../">catálogo de proyectos</a>.</p>
+            </header>
 
-        <div class="detalle">
-            <section>
-                <h3>Qué es NetDiag</h3>
-                <p>Escáner de red y monitor de inventario self-hosted. Un único binario Go con interfaz web en español e inglés. No necesita agentes, servicios en la nube ni dependencias en tiempo de ejecución. Guarda todo en SQLite, en tu máquina. Funciona offline.</p>
-                <p>La idea es simple: descubrir, identificar, almacenar, vigilar, alertar e informar. Está pensado para redes propias, laboratorios y entornos autorizados.</p>
-                <p class="aviso">Es beta y se entrega «tal cual», sin garantías. Úsalo solo en redes propias o con autorización explícita del propietario. Tú eliges qué se escanea y respondes por ello.</p>
-            </section>
+            <div class="proyectos-grid">
+                <article class="proyecto-card">
+                    <span class="difficulty easy">🛠️ Self-hosted · AGPL-3.0</span>
+                    <h3>NetDiag</h3>
+                    <p>Inventario y diagnóstico de red en un binario. Sin telemetría, sin nube y sin servicios externos.</p>
+                    <ul>
+                        <li><a class="btn-small" href="https://github.com/kr3s4l4/netdiag">Repo</a></li>
+                        <li><a class="btn-small" href="https://github.com/kr3s4l4/netdiag/releases/tag/v1.5.2">Release v1.5.2</a></li>
+                        <li><a class="btn-small" href="https://github.com/kr3s4l4/netdiag#readme">README</a></li>
+                    </ul>
+                </article>
+            </div>
 
-            <section>
-                <h3>Qué hace</h3>
-                <ul>
-                    <li><strong>Descubrimiento en tres fases:</strong> vecinos ARP e ICMP, barrido TCP y enriquecimiento con DNS inverso, banners, TLS, SNMP y LLDP/CDP.</li>
-                    <li><strong>Identidad estable:</strong> los hosts se identifican por MAC, no solo por IP. Las notas y etiquetas sobreviven a cambios de dirección. La identidad se separa por sede.</li>
-                    <li><strong>Multi-sede:</strong> oficinas, plantas o datacenters conviven en una sola base. El mismo CIDR puede repetirse en sedes distintas. Cada sede se puede exportar e importar.</li>
-                    <li><strong>Inventario y topología:</strong> fabricante por OUI, tipo de dispositivo, sistema operativo probable, puertos, servicios, certificados y modelo SNMP. El mapa L2/L3 se dibuja en SVG con zoom y agrupación por subred.</li>
-                    <li><strong>Diagnósticos:</strong> lazos STP, fugas de VLAN, desajustes de dúplex, problemas de MTU, tormentas de broadcast, AP no autorizados, cambios de gateway y certificados por caducar. Cada hallazgo incluye evidencia, confianza y limitaciones.</li>
-                    <li><strong>Vigilancia:</strong> escaneos programados, hosts nuevos o caídos, histórico de latencia y reglas de alerta con deduplicación y cooldown.</li>
-                    <li><strong>Informes y auditoría:</strong> PDF, CSV, JSON y HTML. Líneas base manuales por sede y comparación entre dos ventanas de tiempo.</li>
-                    <li><strong>Operación:</strong> tres roles (admin, operator, viewer), API OpenAPI 3.1, métricas Prometheus, copias ZIP y exportación de eventos a syslog, webhooks firmados y otras plataformas.</li>
-                </ul>
-                <p>Los diagnósticos infieren de tablas e históricos. Son pistas para investigar, no una confirmación protocolaria de un ataque. La captura pasiva es opcional y solo guarda metadatos.</p>
-            </section>
+            <div class="detalle">
+                <section>
+                    <h3>Qué es NetDiag</h3>
+                    <p>Escáner de red y monitor de inventario self-hosted. Un único binario Go con interfaz web en español e inglés. No necesita agentes, servicios en la nube ni dependencias en tiempo de ejecución. Guarda todo en SQLite, en tu máquina. Funciona offline.</p>
+                    <p>La idea es simple: descubrir, identificar, almacenar, vigilar, alertar e informar. Está pensado para redes propias, laboratorios y entornos autorizados.</p>
+                    <p class="aviso">Es beta y se entrega «tal cual», sin garantías. Úsalo solo en redes propias o con autorización explícita del propietario. Tú eliges qué se escanea y respondes por ello.</p>
+                </section>
 
-            <section>
-                <h3>Capturas</h3>
-                <div class="capturas">
-                    <figure>
-                        <img src="../../assets/images/projects/panel.webp" alt="Panel principal de NetDiag con métricas de la red" loading="lazy">
-                        <figcaption>Panel principal</figcaption>
-                    </figure>
-                    <figure>
-                        <img src="../../assets/images/projects/dispositivos.webp" alt="Inventario de dispositivos de NetDiag" loading="lazy">
-                        <figcaption>Inventario de dispositivos</figcaption>
-                    </figure>
-                    <figure>
-                        <img src="../../assets/images/projects/topologia.webp" alt="Mapa de topología L2 y L3 de NetDiag" loading="lazy">
-                        <figcaption>Topología L2/L3</figcaption>
-                    </figure>
-                    <figure>
-                        <img src="../../assets/images/projects/diagnostico.webp" alt="Hallazgos de diagnósticos con evidencia y confianza" loading="lazy">
-                        <figcaption>Diagnósticos</figcaption>
-                    </figure>
-                    <figure>
-                        <img src="../../assets/images/projects/alertas.webp" alt="Listado de alertas de NetDiag" loading="lazy">
-                        <figcaption>Alertas</figcaption>
-                    </figure>
-                    <figure>
-                        <img src="../../assets/images/projects/informes.webp" alt="Generación de informes de NetDiag" loading="lazy">
-                        <figcaption>Informes</figcaption>
-                    </figure>
-                    <figure>
-                        <img src="../../assets/images/projects/explicacion.webp" alt="Vista de detalle de NetDiag" loading="lazy">
-                        <figcaption>Vista de detalle</figcaption>
-                    </figure>
-                </div>
-                <p class="capturas-note">Capturas con datos de ejemplo.</p>
-            </section>
+                <section>
+                    <h3>Qué hace</h3>
+                    <ul>
+                        <li><strong>Descubrimiento en tres fases:</strong> vecinos ARP e ICMP, barrido TCP y enriquecimiento con DNS inverso, banners, TLS, SNMP y LLDP/CDP.</li>
+                        <li><strong>Identidad estable:</strong> los hosts se identifican por MAC, no solo por IP. Las notas y etiquetas sobreviven a cambios de dirección. La identidad se separa por sede.</li>
+                        <li><strong>Multi-sede:</strong> oficinas, plantas o datacenters conviven en una sola base. El mismo CIDR puede repetirse en sedes distintas. Cada sede se puede exportar e importar.</li>
+                        <li><strong>Inventario y topología:</strong> fabricante por OUI, tipo de dispositivo, sistema operativo probable, puertos, servicios, certificados y modelo SNMP. El mapa L2/L3 se dibuja en SVG con zoom y agrupación por subred.</li>
+                        <li><strong>Diagnósticos:</strong> lazos STP, fugas de VLAN, desajustes de dúplex, problemas de MTU, tormentas de broadcast, AP no autorizados, cambios de gateway y certificados por caducar. Cada hallazgo incluye evidencia, confianza y limitaciones.</li>
+                        <li><strong>Vigilancia:</strong> escaneos programados, hosts nuevos o caídos, histórico de latencia y reglas de alerta con deduplicación y cooldown.</li>
+                        <li><strong>Informes y auditoría:</strong> PDF, CSV, JSON y HTML. Líneas base manuales por sede y comparación entre dos ventanas de tiempo.</li>
+                        <li><strong>Operación:</strong> tres roles (admin, operator, viewer), API OpenAPI 3.1, métricas Prometheus, copias ZIP y exportación de eventos a syslog, webhooks firmados y otras plataformas.</li>
+                    </ul>
+                    <p>Los diagnósticos infieren de tablas e históricos. Son pistas para investigar, no una confirmación protocolaria de un ataque. La captura pasiva es opcional y solo guarda metadatos.</p>
+                </section>
 
-            <section>
-                <h3>Cómo empezar</h3>
-                <p>Necesitas Go 1.27 o superior. Para ARP activo, también <code>libpcap-dev</code> y gcc.</p>
-                <pre><code>git clone https://github.com/kr3s4l4/netdiag.git
+                <section>
+                    <h3>Capturas</h3>
+                    <div class="capturas">
+                        <figure>
+                            <img src="../../assets/images/projects/panel.webp" alt="Panel principal de NetDiag con métricas de la red" loading="lazy">
+                            <figcaption>Panel principal</figcaption>
+                        </figure>
+                        <figure>
+                            <img src="../../assets/images/projects/dispositivos.webp" alt="Inventario de dispositivos de NetDiag" loading="lazy">
+                            <figcaption>Inventario de dispositivos</figcaption>
+                        </figure>
+                        <figure>
+                            <img src="../../assets/images/projects/topologia.webp" alt="Mapa de topología L2 y L3 de NetDiag" loading="lazy">
+                            <figcaption>Topología L2/L3</figcaption>
+                        </figure>
+                        <figure>
+                            <img src="../../assets/images/projects/diagnostico.webp" alt="Hallazgos de diagnósticos con evidencia y confianza" loading="lazy">
+                            <figcaption>Diagnósticos</figcaption>
+                        </figure>
+                        <figure>
+                            <img src="../../assets/images/projects/alertas.webp" alt="Listado de alertas de NetDiag" loading="lazy">
+                            <figcaption>Alertas</figcaption>
+                        </figure>
+                        <figure>
+                            <img src="../../assets/images/projects/informes.webp" alt="Generación de informes de NetDiag" loading="lazy">
+                            <figcaption>Informes</figcaption>
+                        </figure>
+                        <figure>
+                            <img src="../../assets/images/projects/explicacion.webp" alt="Vista de detalle de NetDiag" loading="lazy">
+                            <figcaption>Vista de detalle</figcaption>
+                        </figure>
+                    </div>
+                    <p class="capturas-note">Capturas con datos de ejemplo.</p>
+                </section>
+
+                <section>
+                    <h3>Cómo empezar</h3>
+                    <p>Necesitas Go 1.27 o superior. Para ARP activo, también <code>libpcap-dev</code> y gcc.</p>
+                    <pre><code>git clone https://github.com/kr3s4l4/netdiag.git
 cd netdiag
 make build
 ./bin/netdiag serve      # http://127.0.0.1:8080</code></pre>
-                <p>En el primer acceso se crea la cuenta de administrador. Después se elige la sede, se añade la subred a monitorizar y se lanza el primer escaneo. El asistente de arranque puede omitirse.</p>
-                <p>La configuración vive en <code>~/.config/netdiag/config.yaml</code> y los datos en <code>~/.local/share/netdiag</code>.</p>
-            </section>
+                    <p>En el primer acceso se crea la cuenta de administrador. Después se elige la sede, se añade la subred a monitorizar y se lanza el primer escaneo. El asistente de arranque puede omitirse.</p>
+                    <p>La configuración vive en <code>~/.config/netdiag/config.yaml</code> y los datos en <code>~/.local/share/netdiag</code>.</p>
+                </section>
 
-            <section>
-                <h3>Privacidad y seguridad</h3>
-                <p>No hay telemetría. El binario no informa de nada a ningún servidor. Tú decides qué se guarda y qué se comparte.</p>
-                <ul>
-                    <li>Contraseñas con Argon2id, sesiones en servidor, CSRF y límite de intentos.</li>
-                    <li>Cabeceras CSP y HSTS, auditoría de acciones y secretos cifrados con AES-256-GCM.</li>
-                    <li>Copias de seguridad ZIP con la base, la configuración y la clave local.</li>
-                    <li>Informes, diffs y snapshots se pueden empaquetar en contenedores <code>.ndc</code>: un ZIP con manifiesto, ficheros originales y firma minisign. La firma se verifica en local y usa una clave distinta de la de release.</li>
-                </ul>
-            </section>
+                <section>
+                    <h3>Privacidad y seguridad</h3>
+                    <p>No hay telemetría. El binario no informa de nada a ningún servidor. Tú decides qué se guarda y qué se comparte.</p>
+                    <ul>
+                        <li>Contraseñas con Argon2id, sesiones en servidor, CSRF y límite de intentos.</li>
+                        <li>Cabeceras CSP y HSTS, auditoría de acciones y secretos cifrados con AES-256-GCM.</li>
+                        <li>Copias de seguridad ZIP con la base, la configuración y la clave local.</li>
+                        <li>Informes, diffs y snapshots se pueden empaquetar en contenedores <code>.ndc</code>: un ZIP con manifiesto, ficheros originales y firma minisign. La firma se verifica en local y usa una clave distinta de la de release.</li>
+                    </ul>
+                </section>
 
-            <section>
-                <h3>Licencia y modelo</h3>
-                <p>NetDiag es <strong>software libre bajo AGPL-3.0</strong> y <strong>gratuito</strong>. No hay cuenta online, licencia online ni DRM. No hay soporte formal. La única cuenta es la de administrador local que se crea al arrancar.</p>
-                <p>Puedes usar, estudiar, modificar y redistribuir el programa. Si lo distribuyes, conserva los avisos de copyright y entrega la AGPL. Si ejecutas una versión modificada y la ofreces a otros usuarios a través de una red, la sección 13 de la AGPL exige ofrecerles el código fuente correspondiente. No hay cláusula de telemetría ni restricción de uso competitivo.</p>
-                <p>El binario sabe leer un fichero de licencia firmado con Ed25519. La comprobación es local: no contacta con ningún servidor. Es una capacidad técnica, sin servicios externos ni bloqueo. No activa funciones premium, no bloquea escaneos ni informes y nunca borra datos.</p>
-                <p>Las contribuciones se aceptan bajo DCO, sin CLA. Los avisos de dependencias de terceros están en <code>NOTICE</code> y <code>THIRD_PARTY_LICENSES.md</code>.</p>
-            </section>
+                <section>
+                    <h3>Licencia y modelo</h3>
+                    <p>NetDiag es <strong>software libre bajo AGPL-3.0</strong> y <strong>gratuito</strong>. No hay cuenta online, licencia online ni DRM. No hay soporte formal. La única cuenta es la de administrador local que se crea al arrancar.</p>
+                    <p>Puedes usar, estudiar, modificar y redistribuir el programa. Si lo distribuyes, conserva los avisos de copyright y entrega la AGPL. Si ejecutas una versión modificada y la ofreces a otros usuarios a través de una red, la sección 13 de la AGPL exige ofrecerles el código fuente correspondiente. No hay cláusula de telemetría ni restricción de uso competitivo.</p>
+                    <p>El binario sabe leer un fichero de licencia firmado con Ed25519. La comprobación es local: no contacta con ningún servidor. Es una capacidad técnica, sin servicios externos ni bloqueo. No activa funciones premium, no bloquea escaneos ni informes y nunca borra datos.</p>
+                    <p>Las contribuciones se aceptan bajo DCO, sin CLA. Los avisos de dependencias de terceros están en <code>NOTICE</code> y <code>THIRD_PARTY_LICENSES.md</code>.</p>
+                </section>
 
-            <section>
-                <h3>Release y soporte</h3>
-                <p>La última release publicada es <strong>v1.5.2</strong>. Incluye binarios para amd64 y arm64, <code>SHA256SUMS</code>, SBOM CycloneDX, atestación de procedencia y firma minisign con la clave pública <code>c98b13d8c8f73259</code>. Los hashes se pueden comprobar antes de ejecutar nada.</p>
-                <p>No hay SLA ni soporte formal. Los errores y las preguntas técnicas van a GitHub Issues. Las preguntas generales, a GitHub Discussions. Las vulnerabilidades se reportan por el canal privado descrito en <code>SECURITY.md</code>.</p>
-            </section>
+                <section>
+                    <h3>Release y soporte</h3>
+                    <p>La última release publicada es <strong>v1.5.2</strong>. Incluye binarios para amd64 y arm64, <code>SHA256SUMS</code>, SBOM CycloneDX, atestación de procedencia y firma minisign con la clave pública <code>c98b13d8c8f73259</code>. Los hashes se pueden comprobar antes de ejecutar nada.</p>
+                    <p>No hay SLA ni soporte formal. Los errores y las preguntas técnicas van a GitHub Issues. Las preguntas generales, a GitHub Discussions. Las vulnerabilidades se reportan por el canal privado descrito en <code>SECURITY.md</code>.</p>
+                </section>
 
-            <section>
-                <h3>Enlaces</h3>
-                <ul>
-                    <li><a href="https://github.com/kr3s4l4/netdiag">Repositorio</a></li>
-                    <li><a href="https://github.com/kr3s4l4/netdiag/releases/tag/v1.5.2">Release v1.5.2</a></li>
-                    <li><a href="https://github.com/kr3s4l4/netdiag#readme">README</a></li>
-                    <li><a href="https://github.com/kr3s4l4/netdiag/blob/master/docs/licenciamiento.md">Licenciamiento</a> · <a href="https://github.com/kr3s4l4/netdiag/blob/master/LICENSE">LICENSE</a></li>
-                    <li><a href="https://github.com/kr3s4l4/netdiag/blob/master/docs/evidencia-firmada.md">Evidencia firmada</a> · <a href="https://github.com/kr3s4l4/netdiag/blob/master/SECURITY.md">SECURITY.md</a></li>
-                    <li><a href="https://github.com/kr3s4l4/netdiag/issues">Issues</a> · <a href="https://github.com/kr3s4l4/netdiag/discussions">Discussions</a></li>
-                    <li><a href="https://kr3s4l4.github.io/netdiag/plantillas/formulario-caso-de-uso.html">Manifiesto de caso de uso</a> (se genera en tu navegador; tú decides si lo envías)</li>
-                </ul>
-            </section>
+                <section>
+                    <h3>Enlaces</h3>
+                    <ul>
+                        <li><a href="https://github.com/kr3s4l4/netdiag">Repositorio</a></li>
+                        <li><a href="https://github.com/kr3s4l4/netdiag/releases/tag/v1.5.2">Release v1.5.2</a></li>
+                        <li><a href="https://github.com/kr3s4l4/netdiag#readme">README</a></li>
+                        <li><a href="https://github.com/kr3s4l4/netdiag/blob/master/docs/licenciamiento.md">Licenciamiento</a> · <a href="https://github.com/kr3s4l4/netdiag/blob/master/LICENSE">LICENSE</a></li>
+                        <li><a href="https://github.com/kr3s4l4/netdiag/blob/master/docs/evidencia-firmada.md">Evidencia firmada</a> · <a href="https://github.com/kr3s4l4/netdiag/blob/master/SECURITY.md">SECURITY.md</a></li>
+                        <li><a href="https://github.com/kr3s4l4/netdiag/issues">Issues</a> · <a href="https://github.com/kr3s4l4/netdiag/discussions">Discussions</a></li>
+                        <li><a href="https://kr3s4l4.github.io/netdiag/plantillas/formulario-caso-de-uso.html">Manifiesto de caso de uso</a> (se genera en tu navegador; tú decides si lo envías)</li>
+                    </ul>
+                </section>
+            </div>
+        </div>
+
+        <hr class="idioma-sep" id="english">
+
+        <div lang="en">
+            <p>
+                <a class="back-link" href="../">← Back to catalogue</a>
+                <a class="back-link" href="../../">· Portfolio</a>
+            </p>
+
+            <header class="proyectos-hero">
+                <h2>NetDiag</h2>
+                <p>Project page. For the rest of the work, go back to the <a href="../">project catalogue</a>.</p>
+            </header>
+
+            <div class="proyectos-grid">
+                <article class="proyecto-card">
+                    <span class="difficulty easy">🛠️ Self-hosted · AGPL-3.0</span>
+                    <h3>NetDiag</h3>
+                    <p>Network inventory and diagnostics in a single binary. No telemetry, no cloud and no external services.</p>
+                    <ul>
+                        <li><a class="btn-small" href="https://github.com/kr3s4l4/netdiag">Repo</a></li>
+                        <li><a class="btn-small" href="https://github.com/kr3s4l4/netdiag/releases/tag/v1.5.2">Release v1.5.2</a></li>
+                        <li><a class="btn-small" href="https://github.com/kr3s4l4/netdiag#readme">README</a></li>
+                    </ul>
+                </article>
+            </div>
+
+            <div class="detalle">
+                <section>
+                    <h3>What NetDiag is</h3>
+                    <p>A self-hosted network scanner and inventory monitor. A single Go binary with a web interface in Spanish and English. It needs no agents, cloud services or runtime dependencies. It stores everything in SQLite on your machine. It works offline.</p>
+                    <p>The idea is simple: discover, identify, store, watch, alert and report. It is meant for your own networks, labs and authorised environments.</p>
+                    <p class="aviso">It is beta software and is provided "as is", without warranties. Use it only on networks you own or with the owner's explicit authorisation. You choose what gets scanned and you are responsible for it.</p>
+                </section>
+
+                <section>
+                    <h3>What it does</h3>
+                    <ul>
+                        <li><strong>Three-stage discovery:</strong> ARP and ICMP neighbours, TCP sweep and enrichment with reverse DNS, banners, TLS, SNMP and LLDP/CDP.</li>
+                        <li><strong>Stable identity:</strong> hosts are identified by MAC, not only by IP. Notes and labels survive address changes. Identity is separated per site.</li>
+                        <li><strong>Multi-site:</strong> offices, floors or datacenters live in a single database. The same CIDR can be reused in different sites. Each site can be exported and imported.</li>
+                        <li><strong>Inventory and topology:</strong> vendor by OUI, device type, probable operating system, ports, services, certificates and SNMP model. The L2/L3 map is drawn in SVG with zoom and grouping by subnet.</li>
+                        <li><strong>Diagnostics:</strong> STP loops, VLAN leaks, duplex mismatches, MTU problems, broadcast storms, unauthorised APs, gateway changes and expiring certificates. Every finding includes evidence, confidence and limitations.</li>
+                        <li><strong>Monitoring:</strong> scheduled scans, new or down hosts, latency history and alert rules with deduplication and cooldown.</li>
+                        <li><strong>Reports and auditing:</strong> PDF, CSV, JSON and HTML. Manual baselines per site and comparison between two time windows.</li>
+                        <li><strong>Operation:</strong> three roles (admin, operator, viewer), an OpenAPI 3.1 API, Prometheus metrics, ZIP backups and event export to syslog, signed webhooks and other platforms.</li>
+                    </ul>
+                    <p>Diagnostics infer from tables and history. They are leads to investigate, not a formal confirmation of an attack. Passive capture is optional and stores metadata only.</p>
+                </section>
+
+                <section>
+                    <h3>Screenshots</h3>
+                    <div class="capturas">
+                        <figure>
+                            <img src="../../assets/images/projects/panel.webp" alt="NetDiag main dashboard with network metrics" loading="lazy">
+                            <figcaption>Main dashboard</figcaption>
+                        </figure>
+                        <figure>
+                            <img src="../../assets/images/projects/dispositivos.webp" alt="NetDiag device inventory" loading="lazy">
+                            <figcaption>Device inventory</figcaption>
+                        </figure>
+                        <figure>
+                            <img src="../../assets/images/projects/topologia.webp" alt="NetDiag L2 and L3 topology map" loading="lazy">
+                            <figcaption>L2/L3 topology</figcaption>
+                        </figure>
+                        <figure>
+                            <img src="../../assets/images/projects/diagnostico.webp" alt="Diagnostics with evidence and confidence" loading="lazy">
+                            <figcaption>Diagnostics</figcaption>
+                        </figure>
+                        <figure>
+                            <img src="../../assets/images/projects/alertas.webp" alt="NetDiag alert list" loading="lazy">
+                            <figcaption>Alerts</figcaption>
+                        </figure>
+                        <figure>
+                            <img src="../../assets/images/projects/informes.webp" alt="NetDiag report generation" loading="lazy">
+                            <figcaption>Reports</figcaption>
+                        </figure>
+                        <figure>
+                            <img src="../../assets/images/projects/explicacion.webp" alt="NetDiag detail view" loading="lazy">
+                            <figcaption>Detail view</figcaption>
+                        </figure>
+                    </div>
+                    <p class="capturas-note">Screenshots with sample data.</p>
+                </section>
+
+                <section>
+                    <h3>Getting started</h3>
+                    <p>You need Go 1.27 or newer. For active ARP, you also need <code>libpcap-dev</code> and gcc.</p>
+                    <pre><code>git clone https://github.com/kr3s4l4/netdiag.git
+cd netdiag
+make build
+./bin/netdiag serve      # http://127.0.0.1:8080</code></pre>
+                    <p>The administrator account is created on first access. Then choose a site, add the subnet to monitor and run the first scan. The setup wizard can be skipped.</p>
+                    <p>Configuration lives in <code>~/.config/netdiag/config.yaml</code> and data in <code>~/.local/share/netdiag</code>.</p>
+                </section>
+
+                <section>
+                    <h3>Privacy and security</h3>
+                    <p>No telemetry. The binary reports nothing to any server. You decide what is stored and what is shared.</p>
+                    <ul>
+                        <li>Argon2id password hashing, server-side sessions, CSRF protection and login attempt limiting.</li>
+                        <li>CSP and HSTS headers, action auditing and secrets encrypted with AES-256-GCM.</li>
+                        <li>ZIP backups with the database, configuration and local key.</li>
+                        <li>Reports, diffs and snapshots can be packaged in <code>.ndc</code> containers: a ZIP with a manifest, original files and a minisign signature. The signature is verified locally and uses a key distinct from the release key.</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h3>Licence and model</h3>
+                    <p>NetDiag is <strong>free software under AGPL-3.0</strong> and <strong>free of charge</strong>. No online account, no online licence and no DRM. No formal support. The only account is the local administrator created on first start.</p>
+                    <p>You can use, study, modify and redistribute the program. If you distribute it, keep the copyright notices and provide the AGPL. If you run a modified version and offer it to other users over a network, section 13 of the AGPL requires you to offer them the corresponding source code. There is no telemetry clause and no restriction on competitive use.</p>
+                    <p>The binary can read a licence file signed with Ed25519. The check is local: it does not contact any server. It is a technical capability, with no external services or lock-in. It does not unlock premium features, does not block scans or reports and never deletes data.</p>
+                    <p>Contributions are accepted under DCO, with no CLA. Third-party dependency notices are in <code>NOTICE</code> and <code>THIRD_PARTY_LICENSES.md</code>.</p>
+                </section>
+
+                <section>
+                    <h3>Release and support</h3>
+                    <p>The latest published release is <strong>v1.5.2</strong>. It includes binaries for amd64 and arm64, <code>SHA256SUMS</code>, a CycloneDX SBOM, a provenance attestation and a minisign signature with public key <code>c98b13d8c8f73259</code>. Hashes can be checked before running anything.</p>
+                    <p>There is no SLA or formal support. Bugs and technical questions go to GitHub Issues. General questions go to GitHub Discussions. Vulnerabilities are reported through the private channel described in <code>SECURITY.md</code>.</p>
+                </section>
+
+                <section>
+                    <h3>Links</h3>
+                    <ul>
+                        <li><a href="https://github.com/kr3s4l4/netdiag">Repository</a></li>
+                        <li><a href="https://github.com/kr3s4l4/netdiag/releases/tag/v1.5.2">Release v1.5.2</a></li>
+                        <li><a href="https://github.com/kr3s4l4/netdiag#readme">README</a></li>
+                        <li><a href="https://github.com/kr3s4l4/netdiag/blob/master/docs/licenciamiento.md">Licensing</a> · <a href="https://github.com/kr3s4l4/netdiag/blob/master/LICENSE">LICENSE</a></li>
+                        <li><a href="https://github.com/kr3s4l4/netdiag/blob/master/docs/evidencia-firmada.md">Signed evidence</a> · <a href="https://github.com/kr3s4l4/netdiag/blob/master/SECURITY.md">SECURITY.md</a></li>
+                        <li><a href="https://github.com/kr3s4l4/netdiag/issues">Issues</a> · <a href="https://github.com/kr3s4l4/netdiag/discussions">Discussions</a></li>
+                        <li><a href="https://kr3s4l4.github.io/netdiag/plantillas/formulario-caso-de-uso.html">Use-case manifest</a> (generated in your browser; you decide whether to send it)</li>
+                    </ul>
+                </section>
+            </div>
         </div>
 
         <footer class="proyectos-footer">
-            © 2026 kr3s4l4 · <a href="../">Volver al catálogo</a> · <a href="../../">Portafolio</a>
+            © 2026 kr3s4l4 · <a href="../">Volver al catálogo / Back to catalogue</a> · <a href="../../">Portafolio / Portfolio</a>
         </footer>
     </div>
 </body>
