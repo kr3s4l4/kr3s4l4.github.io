@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SecReport Studio - kr3s4l4</title>
-    <meta name="description" content="SecReport Studio: app offline de un solo archivo para informes de pentest y bug bounty. Importa salidas de herramientas, vincula CVE y exporta Markdown.">
+    <meta name="description" content="SecReport Studio: app offline de un solo archivo para informes de pentest y bug bounty. Importa salidas de herramientas, vincula CVE y exporta Markdown. Offline single-file app for pentest and bug bounty reports.">
     <meta name="author" content="kr3s4l4">
     <meta name="robots" content="index, follow">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:;">
@@ -100,6 +100,15 @@
             color: #3fb950;
             font-size: 0.95rem;
         }
+        .lang-nav {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            color: #8b949e;
+            margin-bottom: 0.5rem;
+        }
+        .lang-nav a { color: #58a6ff; text-decoration: none; }
+        .lang-nav a:hover { text-decoration: underline; }
+        .idioma-sep { border: 0; border-top: 1px solid #1f2933; margin: 3rem 0 0; }
         .back-link {
             font-family: 'JetBrains Mono', monospace;
             font-size: 0.8rem;
@@ -120,110 +129,220 @@
 </head>
 <body>
     <div class="container">
-        <p>
-            <a class="back-link" href="../">← Volver al catálogo</a>
-            <a class="back-link" href="../../">· Portafolio</a>
-        </p>
+        <p class="lang-nav">Idioma / Language: <a href="#espanol">Español</a> · <a href="#english">English</a></p>
 
-        <header class="proyectos-hero">
-            <h2>SecReport Studio</h2>
-            <p>Ficha del proyecto. Para ver el resto, vuelve al <a href="../">catálogo de proyectos</a>.</p>
-        </header>
+        <div id="espanol" lang="es">
+            <p>
+                <a class="back-link" href="../">← Volver al catálogo</a>
+                <a class="back-link" href="../../">· Portafolio</a>
+            </p>
 
-        <div class="proyectos-grid">
-            <article class="proyecto-card">
-                <span class="difficulty easy">🖥️ App offline · pago único</span>
-                <h3>SecReport Studio v1.0</h3>
-                <p>Un solo archivo HTML para organizar hallazgos y generar informes de pentest y bug bounty. Sin instalación, sin servidor y sin internet.</p>
-                <p class="precio">25 € · entrega automática</p>
-                <ul>
-                    <li><a class="btn-small" href="https://kresala.gumroad.com/l/SecReport" target="_blank" rel="noopener noreferrer">Ver en Gumroad ↗</a></li>
-                </ul>
-            </article>
+            <header class="proyectos-hero">
+                <h2>SecReport Studio</h2>
+                <p>Ficha del proyecto. Para ver el resto, vuelve al <a href="../">catálogo de proyectos</a>.</p>
+            </header>
+
+            <div class="proyectos-grid">
+                <article class="proyecto-card">
+                    <span class="difficulty easy">🖥️ App offline · pago único</span>
+                    <h3>SecReport Studio v1.0</h3>
+                    <p>Un solo archivo HTML para organizar hallazgos y generar informes de pentest y bug bounty. Sin instalación, sin servidor y sin internet.</p>
+                    <p class="precio">25 € · entrega automática</p>
+                    <ul>
+                        <li><a class="btn-small" href="https://kresala.gumroad.com/l/SecReport" target="_blank" rel="noopener noreferrer">Ver en Gumroad ↗</a></li>
+                    </ul>
+                </article>
+            </div>
+
+            <div class="detalle">
+                <section>
+                    <h3>Descripción de la app</h3>
+                    <p>SecReport Studio es una aplicación offline de un solo archivo para preparar informes de pentest y bug bounty. Se descarga como ZIP, se abre <code>index.html</code> con doble clic y funciona en cualquier navegador moderno de Windows, macOS o Linux. No requiere instalación, servidor, cuenta ni conexión a internet.</p>
+                    <p>Está pensada para la parte que llega después de la prueba: convertir salidas de herramientas y notas dispersas en un informe claro. Importa CSV, TSV, TXT, JSON y JSONL reconociendo 19 formatos de nmap, ffuf, gobuster, Burp Suite, Nuclei, ZAP, NVD y OSV; permite revisar y corregir cada fila antes de importar; agrupa los CVE dentro de su hallazgo; y ofrece 31 bloques editables, 8 marcos de referencia y 5 estilos para dar forma al documento. Con un botón se cambia entre español e inglés, y se exporta a HTML, PDF, Markdown, Notion o a un «.md para plataforma».</p>
+                    <p>No es una herramienta de hacking: no escanea, no explota nada y no ejecuta pruebas. Solo organiza datos y genera informes a partir del trabajo que ya has hecho. Los datos se guardan en el almacenamiento local del navegador y se pueden exportar a JSON.</p>
+                    <p class="aviso">El export «.md para plataforma» usa un formato neutro. Adapta los campos a las instrucciones de cada programa: no implica compatibilidad oficial con ninguna plataforma.</p>
+                </section>
+
+                <section>
+                    <h3>Qué incluye</h3>
+                    <ul>
+                        <li><strong>Importación editable:</strong> CSV, TSV, TXT, JSON y JSONL con 19 perfiles para nmap, ffuf, gobuster, Burp Suite, Nuclei, ZAP, NVD y OSV. Cada fila se revisa antes de importar y la importación se puede deshacer.</li>
+                        <li><strong>Hallazgos y CVE:</strong> los CVE se guardan dentro de su hallazgo, con CVSS, CWE, componente y versión. Las cadenas de hallazgos conservan las referencias de cada eslabón.</li>
+                        <li><strong>Informe modular:</strong> 31 bloques que se pueden añadir, quitar, reordenar y editar; 8 marcos de referencia, 5 presets y 5 estilos.</li>
+                        <li><strong>Español e inglés:</strong> un botón traduce la interfaz y los rótulos generados. Tus datos, tu evidencia y tus salidas crudas nunca se traducen.</li>
+                        <li><strong>Exportación:</strong> HTML imprimible, PDF desde el navegador, Markdown, Notion y un «.md para plataforma» sin portada ni texto legal.</li>
+                        <li><strong>Demo incluida:</strong> 98 hallazgos, CVE, cadenas y evidencias de un laboratorio autorizado. Los campos de gestión son simulados y están marcados como demo.</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h3>Capturas</h3>
+                    <p class="galeria-titulo">Interfaz en inglés</p>
+                    <div class="capturas">
+                        <figure>
+                            <img src="../../assets/images/projects/secreport/b-01-dashboard.png" alt="Panel principal de SecReport Studio en inglés" loading="lazy">
+                            <figcaption>Panel principal</figcaption>
+                        </figure>
+                        <figure>
+                            <img src="../../assets/images/projects/secreport/b-03-editor.png" alt="Editor modular de bloques en inglés" loading="lazy">
+                            <figcaption>Editor de bloques</figcaption>
+                        </figure>
+                        <figure>
+                            <img src="../../assets/images/projects/secreport/b-06-ingles.png" alt="Informe generado en inglés" loading="lazy">
+                            <figcaption>Informe en inglés</figcaption>
+                        </figure>
+                    </div>
+                    <p class="galeria-titulo">Interfaz en español</p>
+                    <div class="capturas">
+                        <figure>
+                            <img src="../../assets/images/projects/secreport/a-01-dashboard.png" alt="Panel principal de SecReport Studio" loading="lazy">
+                            <figcaption>Panel principal</figcaption>
+                        </figure>
+                        <figure>
+                            <img src="../../assets/images/projects/secreport/a-03-editor.png" alt="Editor modular de bloques" loading="lazy">
+                            <figcaption>Editor de bloques</figcaption>
+                        </figure>
+                        <figure>
+                            <img src="../../assets/images/projects/secreport/a-04-informe.png" alt="Informe generado" loading="lazy">
+                            <figcaption>Informe</figcaption>
+                        </figure>
+                    </div>
+                    <p class="capturas-note">Capturas de la demo incluida con 98 hallazgos. En las capturas en inglés se traducen la interfaz y los rótulos generados; los datos de la demo no se traducen.</p>
+                </section>
+
+                <section>
+                    <h3>Cómo empezar</h3>
+                    <p>Descarga el ZIP desde Gumroad, descomprímelo y abre <code>index.html</code> con doble clic. No hay que instalar nada ni levantar ningún servicio. Los datos se guardan en el almacenamiento local del navegador y se pueden exportar a JSON desde «Datos y copias».</p>
+                </section>
+
+                <section>
+                    <h3>Privacidad</h3>
+                    <p>La aplicación es completamente offline y no contiene telemetría. No llama a servidores, no crea cuentas y no sincroniza nada. Lo que escribas se queda en tu navegador hasta que lo exportes o lo borres.</p>
+                </section>
+
+                <section>
+                    <h3>Licencia y modelo</h3>
+                    <p>Es un producto de pago único de <strong>25 €</strong>, entregado automáticamente desde Gumroad. La licencia permite generar informes para tus clientes sin límite, pero no revender ni redistribuir la plantilla. No hay suscripción ni versiones premium.</p>
+                </section>
+
+                <section>
+                    <h3>Enlaces</h3>
+                    <ul>
+                        <li><a href="https://kresala.gumroad.com/l/SecReport" target="_blank" rel="noopener noreferrer">SecReport Studio en Gumroad ↗</a> — ficha y descarga</li>
+                        <li><a href="../">Catálogo de proyectos</a> · <a href="../../">Portafolio</a></li>
+                    </ul>
+                </section>
+            </div>
         </div>
 
-        <div class="detalle">
-            <section>
-                <h3>Descripción de la app</h3>
-                <p>SecReport Studio es una aplicación offline de un solo archivo para preparar informes de pentest y bug bounty. Se descarga como ZIP, se abre <code>index.html</code> con doble clic y funciona en cualquier navegador moderno de Windows, macOS o Linux. No requiere instalación, servidor, cuenta ni conexión a internet.</p>
-                <p>Está pensada para la parte que llega después de la prueba: convertir salidas de herramientas y notas dispersas en un informe claro. Importa CSV, TSV, TXT, JSON y JSONL reconociendo 19 formatos de nmap, ffuf, gobuster, Burp Suite, Nuclei, ZAP, NVD y OSV; permite revisar y corregir cada fila antes de importar; agrupa los CVE dentro de su hallazgo; y ofrece 31 bloques editables, 8 marcos de referencia y 5 estilos para dar forma al documento. Con un botón se cambia entre español e inglés, y se exporta a HTML, PDF, Markdown, Notion o a un «.md para plataforma».</p>
-                <p>No es una herramienta de hacking: no escanea, no explota nada y no ejecuta pruebas. Solo organiza datos y genera informes a partir del trabajo que ya has hecho. Los datos se guardan en el almacenamiento local del navegador y se pueden exportar a JSON.</p>
-                <p class="aviso">El export «.md para plataforma» usa un formato neutro. Adapta los campos a las instrucciones de cada programa: no implica compatibilidad oficial con ninguna plataforma.</p>
-            </section>
+        <hr class="idioma-sep" id="english">
 
-            <section>
-                <h3>Qué incluye</h3>
-                <ul>
-                    <li><strong>Importación editable:</strong> CSV, TSV, TXT, JSON y JSONL con 19 perfiles para nmap, ffuf, gobuster, Burp Suite, Nuclei, ZAP, NVD y OSV. Cada fila se revisa antes de importar y la importación se puede deshacer.</li>
-                    <li><strong>Hallazgos y CVE:</strong> los CVE se guardan dentro de su hallazgo, con CVSS, CWE, componente y versión. Las cadenas de hallazgos conservan las referencias de cada eslabón.</li>
-                    <li><strong>Informe modular:</strong> 31 bloques que se pueden añadir, quitar, reordenar y editar; 8 marcos de referencia, 5 presets y 5 estilos.</li>
-                    <li><strong>Español e inglés:</strong> un botón traduce la interfaz y los rótulos generados. Tus datos, tu evidencia y tus salidas crudas nunca se traducen.</li>
-                    <li><strong>Exportación:</strong> HTML imprimible, PDF desde el navegador, Markdown, Notion y un «.md para plataforma» sin portada ni texto legal.</li>
-                    <li><strong>Demo incluida:</strong> 98 hallazgos, CVE, cadenas y evidencias de un laboratorio autorizado. Los campos de gestión son simulados y están marcados como demo.</li>
-                </ul>
-            </section>
+        <div lang="en">
+            <p>
+                <a class="back-link" href="../">← Back to catalogue</a>
+                <a class="back-link" href="../../">· Portfolio</a>
+            </p>
 
-            <section>
-                <h3>Capturas</h3>
-                <p class="galeria-titulo">Interfaz en inglés</p>
-                <div class="capturas">
-                    <figure>
-                        <img src="../../assets/images/projects/secreport/b-01-dashboard.png" alt="Panel principal de SecReport Studio en inglés" loading="lazy">
-                        <figcaption>Panel principal</figcaption>
-                    </figure>
-                    <figure>
-                        <img src="../../assets/images/projects/secreport/b-03-editor.png" alt="Editor modular de bloques en inglés" loading="lazy">
-                        <figcaption>Editor de bloques</figcaption>
-                    </figure>
-                    <figure>
-                        <img src="../../assets/images/projects/secreport/b-06-ingles.png" alt="Informe generado en inglés" loading="lazy">
-                        <figcaption>Informe en inglés</figcaption>
-                    </figure>
-                </div>
-                <p class="galeria-titulo">Interfaz en español</p>
-                <div class="capturas">
-                    <figure>
-                        <img src="../../assets/images/projects/secreport/a-01-dashboard.png" alt="Panel principal de SecReport Studio" loading="lazy">
-                        <figcaption>Panel principal</figcaption>
-                    </figure>
-                    <figure>
-                        <img src="../../assets/images/projects/secreport/a-03-editor.png" alt="Editor modular de bloques" loading="lazy">
-                        <figcaption>Editor de bloques</figcaption>
-                    </figure>
-                    <figure>
-                        <img src="../../assets/images/projects/secreport/a-04-informe.png" alt="Informe generado" loading="lazy">
-                        <figcaption>Informe</figcaption>
-                    </figure>
-                </div>
-                <p class="capturas-note">Capturas de la demo incluida con 98 hallazgos. En las capturas en inglés se traducen la interfaz y los rótulos generados; los datos de la demo no se traducen.</p>
-            </section>
+            <header class="proyectos-hero">
+                <h2>SecReport Studio</h2>
+                <p>Project page. For the rest of the work, go back to the <a href="../">project catalogue</a>.</p>
+            </header>
 
-            <section>
-                <h3>Cómo empezar</h3>
-                <p>Descarga el ZIP desde Gumroad, descomprímelo y abre <code>index.html</code> con doble clic. No hay que instalar nada ni levantar ningún servicio. Los datos se guardan en el almacenamiento local del navegador y se pueden exportar a JSON desde «Datos y copias».</p>
-            </section>
+            <div class="proyectos-grid">
+                <article class="proyecto-card">
+                    <span class="difficulty easy">🖥️ Offline app · one-time payment</span>
+                    <h3>SecReport Studio v1.0</h3>
+                    <p>A single HTML file to organise findings and generate pentest and bug bounty reports. No installation, no server and no internet.</p>
+                    <p class="precio">€25 · automatic delivery</p>
+                    <ul>
+                        <li><a class="btn-small" href="https://kresala.gumroad.com/l/SecReport" target="_blank" rel="noopener noreferrer">View on Gumroad ↗</a></li>
+                    </ul>
+                </article>
+            </div>
 
-            <section>
-                <h3>Privacidad</h3>
-                <p>La aplicación es completamente offline y no contiene telemetría. No llama a servidores, no crea cuentas y no sincroniza nada. Lo que escribas se queda en tu navegador hasta que lo exportes o lo borres.</p>
-            </section>
+            <div class="detalle">
+                <section>
+                    <h3>About the app</h3>
+                    <p>SecReport Studio is an offline, single-file app for preparing pentest and bug bounty reports. Download the ZIP, open <code>index.html</code> with a double click and it runs in any modern browser on Windows, macOS or Linux. No installation, server, account or internet connection needed.</p>
+                    <p>It is built for the work that comes after the test: turning tool output and scattered notes into a clear report. It imports CSV, TSV, TXT, JSON and JSONL with 19 profiles for nmap, ffuf, gobuster, Burp Suite, Nuclei, ZAP, NVD and OSV; lets you review and fix every row before importing; keeps CVEs inside their finding; and offers 31 editable blocks, 8 reference frameworks and 5 report styles. One button switches between Spanish and English, and you can export to HTML, PDF, Markdown, Notion or a platform-ready .md file.</p>
+                    <p>It is not a hacking tool: it does not scan, exploit or run any tests. It only organises data and generates reports from work you have already done. Data is stored in the browser's local storage and can be exported to JSON.</p>
+                    <p class="aviso">The platform-ready .md export uses a neutral format. Adapt the fields to each program's instructions: it does not imply official compatibility with any platform.</p>
+                </section>
 
-            <section>
-                <h3>Licencia y modelo</h3>
-                <p>Es un producto de pago único de <strong>25 €</strong>, entregado automáticamente desde Gumroad. La licencia permite generar informes para tus clientes sin límite, pero no revender ni redistribuir la plantilla. No hay suscripción ni versiones premium.</p>
-            </section>
+                <section>
+                    <h3>What's included</h3>
+                    <ul>
+                        <li><strong>Editable import:</strong> CSV, TSV, TXT, JSON and JSONL with 19 profiles for nmap, ffuf, gobuster, Burp Suite, Nuclei, ZAP, NVD and OSV. Review and correct every row before importing, and undo the import with one click.</li>
+                        <li><strong>Findings and CVEs:</strong> CVEs are stored inside their finding, with CVSS, CWE, component and version. Finding chains keep the references of each link.</li>
+                        <li><strong>Modular report:</strong> 31 blocks you can add, remove, reorder and edit; 8 reference frameworks, 5 presets and 5 report styles.</li>
+                        <li><strong>Spanish and English:</strong> one button translates the interface and the generated labels. Your data, evidence and raw outputs are never translated.</li>
+                        <li><strong>Export:</strong> printable HTML, PDF from the browser, Markdown, Notion and a platform-ready .md without a cover page or legal text.</li>
+                        <li><strong>Demo included:</strong> 98 findings, CVEs, chains and evidence from an authorised lab. Management fields are simulated and clearly marked as demo.</li>
+                    </ul>
+                </section>
 
-            <section>
-                <h3>Enlaces</h3>
-                <ul>
-                    <li><a href="https://kresala.gumroad.com/l/SecReport" target="_blank" rel="noopener noreferrer">SecReport Studio en Gumroad ↗</a> — ficha y descarga</li>
-                    <li><a href="../">Catálogo de proyectos</a> · <a href="../../">Portafolio</a></li>
-                </ul>
-            </section>
+                <section>
+                    <h3>Screenshots</h3>
+                    <p class="galeria-titulo">English interface</p>
+                    <div class="capturas">
+                        <figure>
+                            <img src="../../assets/images/projects/secreport/b-01-dashboard.png" alt="SecReport Studio main dashboard in English" loading="lazy">
+                            <figcaption>Main dashboard</figcaption>
+                        </figure>
+                        <figure>
+                            <img src="../../assets/images/projects/secreport/b-03-editor.png" alt="Modular block editor in English" loading="lazy">
+                            <figcaption>Block editor</figcaption>
+                        </figure>
+                        <figure>
+                            <img src="../../assets/images/projects/secreport/b-06-ingles.png" alt="Report generated in English" loading="lazy">
+                            <figcaption>Report in English</figcaption>
+                        </figure>
+                    </div>
+                    <p class="galeria-titulo">Spanish interface</p>
+                    <div class="capturas">
+                        <figure>
+                            <img src="../../assets/images/projects/secreport/a-01-dashboard.png" alt="SecReport Studio main dashboard" loading="lazy">
+                            <figcaption>Main dashboard</figcaption>
+                        </figure>
+                        <figure>
+                            <img src="../../assets/images/projects/secreport/a-03-editor.png" alt="Modular block editor" loading="lazy">
+                            <figcaption>Block editor</figcaption>
+                        </figure>
+                        <figure>
+                            <img src="../../assets/images/projects/secreport/a-04-informe.png" alt="Generated report" loading="lazy">
+                            <figcaption>Report</figcaption>
+                        </figure>
+                    </div>
+                    <p class="capturas-note">Screenshots from the included demo with 98 findings. The app translates the interface and generated labels; demo data is never translated.</p>
+                </section>
+
+                <section>
+                    <h3>Getting started</h3>
+                    <p>Download the ZIP from Gumroad, unzip it and double-click <code>index.html</code>. Nothing to install and no service to run. Data is saved in the browser's local storage and can be exported to JSON from "Data and backups".</p>
+                </section>
+
+                <section>
+                    <h3>Privacy</h3>
+                    <p>The app is fully offline and contains no telemetry. It does not call any server, create accounts or sync anything. What you write stays in your browser until you export or delete it.</p>
+                </section>
+
+                <section>
+                    <h3>Licence and pricing</h3>
+                    <p>A single payment of <strong>€25</strong>, delivered automatically from Gumroad. The licence lets you generate reports for your clients with no limits, but does not allow reselling or redistributing the template. No subscription and no premium tiers.</p>
+                </section>
+
+                <section>
+                    <h3>Links</h3>
+                    <ul>
+                        <li><a href="https://kresala.gumroad.com/l/SecReport" target="_blank" rel="noopener noreferrer">SecReport Studio on Gumroad ↗</a> — product page and download</li>
+                        <li><a href="../">Project catalogue</a> · <a href="../../">Portfolio</a></li>
+                    </ul>
+                </section>
+            </div>
         </div>
 
         <footer class="proyectos-footer">
-            © 2026 kr3s4l4 · <a href="../">Volver al catálogo</a> · <a href="../../">Portafolio</a>
+            © 2026 kr3s4l4 · <a href="../">Volver al catálogo / Back to catalogue</a> · <a href="../../">Portafolio / Portfolio</a>
         </footer>
     </div>
 </body>
