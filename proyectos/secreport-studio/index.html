@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SecReport Studio - kr3s4l4</title>
+    <meta name="description" content="SecReport Studio: app offline de un solo archivo para informes de pentest y bug bounty. Importa salidas de herramientas, vincula CVE y exporta Markdown.">
+    <meta name="author" content="kr3s4l4">
+    <meta name="robots" content="index, follow">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:;">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="stylesheet" href="../../assets/css/style.css">
+
+    <style>
+        .proyectos-hero { padding: 1rem 0 0.5rem; }
+        .proyectos-hero p { max-width: 75ch; color: #8b949e; }
+        .proyectos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 14px;
+            margin-top: 1.5rem;
+        }
+        .proyecto-card {
+            background: #0f141a;
+            border: 1px solid #1f2933;
+            border-radius: 8px;
+            padding: 1.2rem;
+        }
+        .proyecto-card h3 {
+            font-family: 'JetBrains Mono', monospace;
+            color: #f0f6fc;
+            margin: 0.6rem 0;
+        }
+        .proyecto-card p { color: #8b949e; margin-bottom: 0.6rem; }
+        .proyecto-card ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            margin-top: 1rem;
+        }
+        .detalle { margin-top: 2.5rem; max-width: 80ch; }
+        .detalle section { margin-bottom: 2rem; }
+        .detalle h3 {
+            font-family: 'JetBrains Mono', monospace;
+            color: #58a6ff;
+            font-size: 1.1rem;
+            margin-bottom: 0.6rem;
+        }
+        .detalle p, .detalle li { color: #c9d1d9; }
+        .detalle ul { padding-left: 1.2rem; margin: 0.6rem 0; }
+        .detalle li { margin-bottom: 0.4rem; }
+        .detalle a { color: #58a6ff; }
+        .detalle code {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85em;
+            background: #161b22;
+            padding: 1px 5px;
+            border-radius: 4px;
+        }
+        .aviso {
+            border-left: 3px solid #d29922;
+            padding-left: 0.9rem;
+            color: #8b949e;
+        }
+        .capturas {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 16px;
+            margin-top: 1rem;
+        }
+        .capturas figure {
+            margin: 0;
+            background: #0f141a;
+            border: 1px solid #1f2933;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .capturas img { width: 100%; height: auto; display: block; }
+        .capturas figcaption {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            color: #8b949e;
+            padding: 0.6rem 0.8rem;
+            border-top: 1px solid #1f2933;
+        }
+        .capturas-note { margin-top: 1rem; font-size: 0.8rem; color: #6e7681; }
+        .galeria-titulo {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            color: #8b949e;
+            margin: 1.8rem 0 0;
+        }
+        .precio {
+            font-family: 'JetBrains Mono', monospace;
+            color: #3fb950;
+            font-size: 0.95rem;
+        }
+        .back-link {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            color: #58a6ff;
+            text-decoration: none;
+        }
+        .back-link:hover { text-decoration: underline; }
+        .proyectos-footer {
+            margin-top: 2.5rem;
+            padding-top: 1rem;
+            border-top: 1px solid #1f2933;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            color: #6e7681;
+        }
+        .proyectos-footer a { color: #58a6ff; text-decoration: none; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <p>
+            <a class="back-link" href="../">← Volver al catálogo</a>
+            <a class="back-link" href="../../">· Portafolio</a>
+        </p>
+
+        <header class="proyectos-hero">
+            <h2>SecReport Studio</h2>
+            <p>Ficha del proyecto. Para ver el resto, vuelve al <a href="../">catálogo de proyectos</a>.</p>
+        </header>
+
+        <div class="proyectos-grid">
+            <article class="proyecto-card">
+                <span class="difficulty easy">🖥️ App offline · pago único</span>
+                <h3>SecReport Studio v1.0</h3>
+                <p>Un solo archivo HTML para organizar hallazgos y generar informes de pentest y bug bounty. Sin instalación, sin servidor y sin internet.</p>
+                <p class="precio">25 € · entrega automática</p>
+                <ul>
+                    <li><a class="btn-small" href="https://kresala.gumroad.com/l/SecReport" target="_blank" rel="noopener noreferrer">Ver en Gumroad ↗</a></li>
+                </ul>
+            </article>
+        </div>
+
+        <div class="detalle">
+            <section>
+                <h3>Descripción de la app</h3>
+                <p>SecReport Studio es una aplicación offline de un solo archivo para preparar informes de pentest y bug bounty. Se descarga como ZIP, se abre <code>index.html</code> con doble clic y funciona en cualquier navegador moderno de Windows, macOS o Linux. No requiere instalación, servidor, cuenta ni conexión a internet.</p>
+                <p>Está pensada para la parte que llega después de la prueba: convertir salidas de herramientas y notas dispersas en un informe claro. Importa CSV, TSV, TXT, JSON y JSONL reconociendo 19 formatos de nmap, ffuf, gobuster, Burp Suite, Nuclei, ZAP, NVD y OSV; permite revisar y corregir cada fila antes de importar; agrupa los CVE dentro de su hallazgo; y ofrece 31 bloques editables, 8 marcos de referencia y 5 estilos para dar forma al documento. Con un botón se cambia entre español e inglés, y se exporta a HTML, PDF, Markdown, Notion o a un «.md para plataforma».</p>
+                <p>No es una herramienta de hacking: no escanea, no explota nada y no ejecuta pruebas. Solo organiza datos y genera informes a partir del trabajo que ya has hecho. Los datos se guardan en el almacenamiento local del navegador y se pueden exportar a JSON.</p>
+                <p class="aviso">El export «.md para plataforma» usa un formato neutro. Adapta los campos a las instrucciones de cada programa: no implica compatibilidad oficial con ninguna plataforma.</p>
+            </section>
+
+            <section>
+                <h3>Qué incluye</h3>
+                <ul>
+                    <li><strong>Importación editable:</strong> CSV, TSV, TXT, JSON y JSONL con 19 perfiles para nmap, ffuf, gobuster, Burp Suite, Nuclei, ZAP, NVD y OSV. Cada fila se revisa antes de importar y la importación se puede deshacer.</li>
+                    <li><strong>Hallazgos y CVE:</strong> los CVE se guardan dentro de su hallazgo, con CVSS, CWE, componente y versión. Las cadenas de hallazgos conservan las referencias de cada eslabón.</li>
+                    <li><strong>Informe modular:</strong> 31 bloques que se pueden añadir, quitar, reordenar y editar; 8 marcos de referencia, 5 presets y 5 estilos.</li>
+                    <li><strong>Español e inglés:</strong> un botón traduce la interfaz y los rótulos generados. Tus datos, tu evidencia y tus salidas crudas nunca se traducen.</li>
+                    <li><strong>Exportación:</strong> HTML imprimible, PDF desde el navegador, Markdown, Notion y un «.md para plataforma» sin portada ni texto legal.</li>
+                    <li><strong>Demo incluida:</strong> 98 hallazgos, CVE, cadenas y evidencias de un laboratorio autorizado. Los campos de gestión son simulados y están marcados como demo.</li>
+                </ul>
+            </section>
+
+            <section>
+                <h3>Capturas</h3>
+                <p class="galeria-titulo">Interfaz en inglés</p>
+                <div class="capturas">
+                    <figure>
+                        <img src="../../assets/images/projects/secreport/b-01-dashboard.png" alt="Panel principal de SecReport Studio en inglés" loading="lazy">
+                        <figcaption>Panel principal</figcaption>
+                    </figure>
+                    <figure>
+                        <img src="../../assets/images/projects/secreport/b-03-editor.png" alt="Editor modular de bloques en inglés" loading="lazy">
+                        <figcaption>Editor de bloques</figcaption>
+                    </figure>
+                    <figure>
+                        <img src="../../assets/images/projects/secreport/b-06-ingles.png" alt="Informe generado en inglés" loading="lazy">
+                        <figcaption>Informe en inglés</figcaption>
+                    </figure>
+                </div>
+                <p class="galeria-titulo">Interfaz en español</p>
+                <div class="capturas">
+                    <figure>
+                        <img src="../../assets/images/projects/secreport/a-01-dashboard.png" alt="Panel principal de SecReport Studio" loading="lazy">
+                        <figcaption>Panel principal</figcaption>
+                    </figure>
+                    <figure>
+                        <img src="../../assets/images/projects/secreport/a-03-editor.png" alt="Editor modular de bloques" loading="lazy">
+                        <figcaption>Editor de bloques</figcaption>
+                    </figure>
+                    <figure>
+                        <img src="../../assets/images/projects/secreport/a-04-informe.png" alt="Informe generado" loading="lazy">
+                        <figcaption>Informe</figcaption>
+                    </figure>
+                </div>
+                <p class="capturas-note">Capturas de la demo incluida con 98 hallazgos. En las capturas en inglés se traducen la interfaz y los rótulos generados; los datos de la demo no se traducen.</p>
+            </section>
+
+            <section>
+                <h3>Cómo empezar</h3>
+                <p>Descarga el ZIP desde Gumroad, descomprímelo y abre <code>index.html</code> con doble clic. No hay que instalar nada ni levantar ningún servicio. Los datos se guardan en el almacenamiento local del navegador y se pueden exportar a JSON desde «Datos y copias».</p>
+            </section>
+
+            <section>
+                <h3>Privacidad</h3>
+                <p>La aplicación es completamente offline y no contiene telemetría. No llama a servidores, no crea cuentas y no sincroniza nada. Lo que escribas se queda en tu navegador hasta que lo exportes o lo borres.</p>
+            </section>
+
+            <section>
+                <h3>Licencia y modelo</h3>
+                <p>Es un producto de pago único de <strong>25 €</strong>, entregado automáticamente desde Gumroad. La licencia permite generar informes para tus clientes sin límite, pero no revender ni redistribuir la plantilla. No hay suscripción ni versiones premium.</p>
+            </section>
+
+            <section>
+                <h3>Enlaces</h3>
+                <ul>
+                    <li><a href="https://kresala.gumroad.com/l/SecReport" target="_blank" rel="noopener noreferrer">SecReport Studio en Gumroad ↗</a> — ficha y descarga</li>
+                    <li><a href="../">Catálogo de proyectos</a> · <a href="../../">Portafolio</a></li>
+                </ul>
+            </section>
+        </div>
+
+        <footer class="proyectos-footer">
+            © 2026 kr3s4l4 · <a href="../">Volver al catálogo</a> · <a href="../../">Portafolio</a>
+        </footer>
+    </div>
+</body>
+</html>
