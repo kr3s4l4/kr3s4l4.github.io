@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://kr3s4l4.github.io/sitemap.xml
